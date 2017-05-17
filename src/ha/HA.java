@@ -11,6 +11,7 @@ public class HA {
         
     public static void main(String[] args) {
         
+        //HALLO
         EntryDataSoure b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
             public Integer[] apply(final Integer[] integers) {
