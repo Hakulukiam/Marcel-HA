@@ -21,6 +21,23 @@ public class HA {
         MyList liste = new MyList();
         Iterator iterator = b.iterator();
         
+        long MAX = 0; 
+        switch (EntryDataSoure.Mode.A) {
+            case A:
+                MAX = 5L;
+                break;
+            case B:
+                MAX = 20L;
+                break;
+            case C:
+                MAX = 73L;
+                break;
+            case D:
+                MAX = 127L;
+        }
+        
+        System.out.println(MAX);
+        
         int i = 0;
         while (iterator.hasNext()) {
             System.out.println("\nFüge ein:");
