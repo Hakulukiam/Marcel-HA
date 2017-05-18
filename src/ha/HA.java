@@ -13,9 +13,9 @@ public class HA {
         
     public static void main(String[] args) {
         
-        
-        MyListElement a = new MyListElement(new Integer[3]);
-        MyListElement b = new MyListElement(new Integer[3]);
+        String s = "test";
+        MyListElement a = new MyListElement(s);
+        MyListElement b = new MyListElement(s);
         
         System.out.println(a.compareTo(b));
         

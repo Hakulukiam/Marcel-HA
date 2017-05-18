@@ -90,8 +90,9 @@ public class MyListElement<T> implements Comparable<T> {
     
     @Override
     public int compareTo(T t) {
+        MyListElement element = (MyListElement) t;
         
-        System.out.println(t.getClass().getName());
+        System.out.println(element.getMyElement().getClass().getName());
         return 1;
     }
 }
