@@ -34,6 +34,7 @@ public class HA {
         
         
         
+        
         System.out.println("\nString[] Liste:");
         Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
             @Override
