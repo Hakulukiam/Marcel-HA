@@ -76,11 +76,12 @@ public class MyListElement<T> implements Comparable<T> {
     }
     /**
      * 
+     * @param t
      * @return  object[0] + object[1] + object[2]
      */
-    public int arraySum() {
-        //return object[0] + object[1] + object[2];
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int arraySum(T t) {
+        Integer[] intarr = (Integer[]) t;
+        return intarr[0] + intarr[1] + intarr[2];
     }        
     
     @Override
@@ -103,18 +104,23 @@ public class MyListElement<T> implements Comparable<T> {
         if(element.getMyElement().getClass().equals(this.object.getClass())){    
         
             if(element.getMyElement() instanceof Integer){
-
+                if((Integer) element.getMyElement() > (Integer) this.object)return -1;
+                if((Integer) element.getMyElement() < (Integer) this.object)return 1;
+                return 0;
             }
 
             if(element.getMyElement() instanceof Integer[]){
-
+                if(this.arraySum((T) element.getMyElement()) > this.arraySum((T) this.object))return -1;
+                if(this.arraySum((T) element.getMyElement()) < this.arraySum((T) this.object))return 1;
+                return 0;
             }
 
             if(element.getMyElement() instanceof String){
 
             }
+            
+        }else{
+            throw new UnsupportedOperationException();
         }
-        
-        return 1;
     }
 }
