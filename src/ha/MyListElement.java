@@ -72,7 +72,8 @@ public class MyListElement<T> implements Comparable<T> {
      * @return Arrays.equals(this.getMyElement(), t.getMyElement())
      */
     public boolean equals(MyListElement t) {
-        return this.object == t.object;        
+        if(this.compareTo((T) t) == 0)return true;
+        return false;
     }
     /**
      * 
@@ -96,17 +97,13 @@ public class MyListElement<T> implements Comparable<T> {
         }
 
         if(this.object instanceof String){
-            return (String) this.object;
+            return this.object.toString();
         }
         throw new UnsupportedOperationException();  
     }
     
     @Override
     public int compareTo(T t) {
-        //java.lang.String
-        //java.lang.Integer
-        //[Ljava.lang.Integer;
-
         MyListElement element = (MyListElement) t;      
                
         if (t == this) {
