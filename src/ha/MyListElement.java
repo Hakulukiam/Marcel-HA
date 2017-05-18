@@ -96,7 +96,7 @@ public class MyListElement<T> implements Comparable<T> {
 
         
         MyListElement element = (MyListElement) t;
-        
+        System.out.println(element.getMyElement() instanceof String);
         System.out.println(element.getMyElement().getClass().isInstance(String.class));
         return 1;
     }
