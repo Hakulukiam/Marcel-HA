@@ -67,14 +67,12 @@ public class MyListElement<T> implements Comparable<T> {
     public T getMyElement() {
         return this.object;
     }
-    /**
-     * 
+    /**     * 
      * @param t wird uebergeben
      * @return Arrays.equals(this.getMyElement(), t.getMyElement())
      */
     public boolean equals(MyListElement t) {
-        //return Arrays.equals(this.getMyElement(), t.getMyElement());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.object == t.object;        
     }
     /**
      * 
@@ -87,12 +85,13 @@ public class MyListElement<T> implements Comparable<T> {
     
     @Override
     public String toString() {
-        //return object[0] + " " + object[1] + " " + object[2];
         return this.object.toString();
     }
     
     @Override
     public int compareTo(T t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        System.out.println(t.getClass().getName());
+        return 1;
     }
 }

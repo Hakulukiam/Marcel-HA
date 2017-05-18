@@ -13,6 +13,14 @@ public class HA {
         
     public static void main(String[] args) {
         
+        
+        MyListElement a = new MyListElement(new Integer[3]);
+        MyListElement b = new MyListElement(new Integer[3]);
+        
+        System.out.println(a.compareTo(b));
+        
+        
+        /*
         System.out.println("Int[] Liste:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
@@ -59,6 +67,6 @@ public class HA {
                 
         System.out.println("\nLänge 2 beträgt:");
         System.out.println(liste.length());
-               
+           */    
     }
 }
