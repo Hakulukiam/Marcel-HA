@@ -13,6 +13,7 @@ public class HA {
         
     public static void main(String[] args) {
         
+        
         Integer[] s = {7,2,3};
         Integer[] g = {3,4,5};
         MyListElement a = new MyListElement(s);
