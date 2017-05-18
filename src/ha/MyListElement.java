@@ -86,7 +86,19 @@ public class MyListElement<T> implements Comparable<T> {
     
     @Override
     public String toString() {
-        return this.object.toString();
+        if(this.object instanceof Integer){
+            return this.object.toString();
+        }
+
+        if(this.object instanceof Integer[]){
+            Integer[] intarr = (Integer[]) this.object;
+            return intarr[0]+" "+intarr[1]+" "+intarr[2];
+        }
+
+        if(this.object instanceof String){
+            return (String) this.object;
+        }
+        throw new UnsupportedOperationException();  
     }
     
     @Override
@@ -120,8 +132,7 @@ public class MyListElement<T> implements Comparable<T> {
                 String b = (String) this.object;
                 return b.compareTo(a);
             }
-            
-            
+
         }
         throw new UnsupportedOperationException();      
     }
