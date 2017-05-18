@@ -94,10 +94,27 @@ public class MyListElement<T> implements Comparable<T> {
         //java.lang.Integer
         //[Ljava.lang.Integer;
 
+        MyListElement element = (MyListElement) t;      
+               
+        if (t == this) {
+            return 0;
+        }
         
-        MyListElement element = (MyListElement) t;
-        System.out.println(element.getMyElement() instanceof String);
-        System.out.println(element.getMyElement().getClass().isInstance(String.class));
+        if(element.getMyElement().getClass().equals(this.object.getClass())){    
+        
+            if(element.getMyElement() instanceof Integer){
+
+            }
+
+            if(element.getMyElement() instanceof Integer[]){
+
+            }
+
+            if(element.getMyElement() instanceof String){
+
+            }
+        }
+        
         return 1;
     }
 }
