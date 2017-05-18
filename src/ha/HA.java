@@ -13,9 +13,10 @@ public class HA {
         
     public static void main(String[] args) {
         
-        int s = 1;
+        Integer[] s = {100,2,3};
+        Integer[] g = {3,4,5};
         MyListElement a = new MyListElement(s);
-        MyListElement b = new MyListElement(s);
+        MyListElement b = new MyListElement(g);
         
         System.out.println(a.compareTo(b));
         
