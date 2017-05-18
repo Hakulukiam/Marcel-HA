@@ -13,7 +13,7 @@ public class HA {
         
     public static void main(String[] args) {
         
-        String s = "test";
+        int s = 1;
         MyListElement a = new MyListElement(s);
         MyListElement b = new MyListElement(s);
         

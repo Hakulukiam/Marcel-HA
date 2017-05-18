@@ -90,9 +90,14 @@ public class MyListElement<T> implements Comparable<T> {
     
     @Override
     public int compareTo(T t) {
+        //java.lang.String
+        //java.lang.Integer
+        //[Ljava.lang.Integer;
+
+        
         MyListElement element = (MyListElement) t;
         
-        System.out.println(element.getMyElement().getClass().getName());
+        System.out.println(element.getMyElement().getClass().isInstance(String.class));
         return 1;
     }
 }
