@@ -72,8 +72,7 @@ public class MyListElement<T> implements Comparable<T> {
      * @return Arrays.equals(this.getMyElement(), t.getMyElement())
      */
     public boolean equals(MyListElement t) {
-        if(this.compareTo((T) t) == 0)return true;
-        return false;
+        return this.compareTo((T) t) == 0;
     }
     /**
      * 
