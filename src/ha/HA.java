@@ -30,6 +30,10 @@ public class HA {
         System.out.println("\nLänge 1 beträgt:");
         System.out.println(liste.length());
         System.out.println("\n================================================================================\n");
+        
+        
+        
+        
         System.out.println("\nString[] Liste:");
         Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
             @Override
