@@ -101,7 +101,7 @@ public class MyListElement<T> implements Comparable<T> {
             return 0;
         }
         
-        if(element.getMyElement().getClass().equals(this.object.getClass())){    
+        if(element.getMyElement().getClass().equals(this.object.getClass())){   
         
             if(element.getMyElement() instanceof Integer){
                 if((Integer) element.getMyElement() > (Integer) this.object)return -1;
@@ -116,11 +116,13 @@ public class MyListElement<T> implements Comparable<T> {
             }
 
             if(element.getMyElement() instanceof String){
-
+                String a = (String) element.getMyElement();
+                String b = (String) this.object;
+                return a.compareTo(b);
             }
             
-        }else{
-            throw new UnsupportedOperationException();
+            
         }
+        throw new UnsupportedOperationException();      
     }
 }
