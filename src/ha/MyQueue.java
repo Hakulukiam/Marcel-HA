@@ -16,7 +16,7 @@ public class MyQueue extends MyList {
      * @param e
      */
     public void add(MyListElement e){
-        
+        this.append(e);
     } 
             
     /**
