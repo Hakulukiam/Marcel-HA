@@ -13,6 +13,38 @@ public class HA {
         
     public static void main(String[] args) {
         
+        //TEST 4 MyQueue
+        System.out.println("Integer[] SortedList:");
+        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+            @Override
+            public Integer[] apply(final Integer[] integers) {
+                return integers;
+            }
+        });
+        MyQueue liste = new MyQueue();
+              
+        //Add
+        for (Integer[] element : a) {
+            liste.add(new MyListElement(element));  
+            System.out.println(Arrays.toString(element));
+        }                
+        System.out.println("\nLänge beträgt:");
+        System.out.println(liste.length());
+        
+        //Element
+        System.out.println("\nDas Erste Element Lautet:");
+        System.out.println(liste.element());
+        
+        //Remove
+        System.out.println("\nDas Erste Element wird gelöscht.");
+        liste.remove();
+        System.out.println("Das Neue Erste Element Lautet:");
+        System.out.println(liste.element());
+        System.out.println("\nNeue Länge beträgt:");
+        System.out.println(liste.length());
+
+       
+        
         /*
         //TEST 3 SortedList    
         System.out.println("Integer[] SortedList:");
