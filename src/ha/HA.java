@@ -13,7 +13,27 @@ public class HA {
         
     public static void main(String[] args) {
         
+        //TEST 3        
+        System.out.println("Int[] SortedList:");
+        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+            @Override
+            public Integer[] apply(final Integer[] integers) {
+                return integers;
+            }
+        });
+        MySortedList liste = new MySortedList();
+                       
+        for (Integer[] element : a) {
+            liste.insert(new MyListElement(element));  
+            System.out.println(Arrays.toString(element));
+        }
+                
+        System.out.println("\nLänge beträgt:");
+        System.out.println(liste.length());
+        
+        
         /*
+        //TEST 2
         Integer[] s = {7,2,3};
         Integer[] g = {3,4,5};
         MyListElement a = new MyListElement(s);
@@ -22,6 +42,8 @@ public class HA {
         System.out.println(a.compareTo(b));
         */
         
+        /*
+        //TEST1
         System.out.println("Int[] Liste:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
@@ -68,5 +90,6 @@ public class HA {
                 
         System.out.println("\nLänge 2 beträgt:");
         System.out.println(liste.length());
+        */
     }
 }

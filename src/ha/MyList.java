@@ -12,9 +12,9 @@ import java.util.Iterator;
  */
 public class MyList implements de.tu_bs.ips.List, Iterator {
     
-    private MyListElement firstElement;
-    private MyListElement lastElement;
-    private MyListElement currentElement;
+    public MyListElement firstElement;
+    public MyListElement lastElement;
+    public MyListElement currentElement;
     /**
      * 
      */
