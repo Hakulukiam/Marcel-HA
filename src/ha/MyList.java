@@ -107,16 +107,17 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
     public void delete(Object e) {
         MyListElement current = firstElement;
         MyListElement element = (MyListElement) e;
+                
         if (current != null && current.getMyElement() != null) {
             while (current != null && current.getMyElement() != null) {
                 //System.out.println("1:"+current.getMyListElement()+" 2:"+Element);
-                if (current.getMyListElement().equals(element)) {
-                    if (current.getprevMyElement() != null && current.getprevMyElement().getMyElement() == null) {
+                if (current.equals(element)) {
+                    if (current.getprevMyElement() == null) {
                         current.getnextMyElement().setprevMyElement(null);
                         this.firstElement = current.getnextMyElement();
                         break;
                     }
-                    if (current.getnextMyElement() != null && current.getnextMyElement().getMyElement() == null) {
+                    if (current.getnextMyElement() == null) {
                         current.getprevMyElement().setnextMyElement(null);
                         this.lastElement = current.getprevMyElement();
                         break;
