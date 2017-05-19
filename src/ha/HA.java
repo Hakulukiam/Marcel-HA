@@ -35,7 +35,6 @@ public class HA {
             System.out.println(listelement.toString()+" Summe:"+listelement.arraySum(listelement.getMyElement()));
         }  
         
-        
         /*
         //TEST 2
         Integer[] s = {7,2,3};

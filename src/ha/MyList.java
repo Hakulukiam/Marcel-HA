@@ -10,7 +10,7 @@ import java.util.Iterator;
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
  */
-public class MyList implements de.tu_bs.ips.List, Iterator {
+public class MyList implements de.tu_bs.ips.List, Iterator, Iterable {
     
     public MyListElement firstElement;
     public MyListElement lastElement;
@@ -145,6 +145,16 @@ public class MyList implements de.tu_bs.ips.List, Iterator {
 
     @Override
     public Iterator iterator() {
-        return this;        
+        return new Iterator() {
+            @Override
+            public boolean hasNext() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public Object next() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }            
+        };        
     }    
 }
