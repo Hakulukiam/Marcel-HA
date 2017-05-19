@@ -105,11 +105,12 @@ public class HA {
         //TEST 2 Compare To
         Integer[] s = {1,1,1};
         MyListElement a = new MyListElement(s);
-        
         Integer[] g = {2,2,2};
         MyListElement b = new MyListElement(g);
         
+        System.out.println("Vergleiche a [1 ,1 ,1] mit b [2, 2, 2]");
         System.out.println(a.compareTo(b));
+        System.out.println("Vergleiche b [2, 2, 2] mit a [1 ,1 ,1]");
         System.out.println(b.compareTo(a));
         */
         
