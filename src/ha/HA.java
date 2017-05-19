@@ -25,11 +25,15 @@ public class HA {
                        
         for (Integer[] element : a) {
             liste.insert(new MyListElement(element));  
-            System.out.println(Arrays.toString(element));
-        }
-                
+            //System.out.println(Arrays.toString(element));
+        }                
         System.out.println("\nLänge beträgt:");
         System.out.println(liste.length());
+        
+        for (Object element : liste) {
+            MyListElement listelement = (MyListElement) element; 
+            System.out.println(listelement.toString()+" Summe:"+listelement.arraySum(listelement.getMyElement()));
+        }  
         
         
         /*
