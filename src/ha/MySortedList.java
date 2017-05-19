@@ -43,7 +43,9 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
                 }    
             } 
         } else {
-            throw new IndexOutOfBoundsException("Liste hat noch keine Elemente!");
+            this.currentElement = (MyListElement) e;
+            this.firstElement = (MyListElement) e;
+            this.lastElement = (MyListElement) e;                 
         }
     }
     
