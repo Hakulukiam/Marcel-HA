@@ -25,8 +25,8 @@ public class MyQueue extends MyList {
      */
     public MyListElement remove(){
         if(this.length() > 0){
-            MyListElement ret = this.firstElement;
-            this.delete(ret);    
+            MyListElement ret = new MyListElement(this.firstElement.getMyElement());
+            this.delete(this.firstElement);    
             return ret;            
         }else{
             return null;
@@ -38,8 +38,10 @@ public class MyQueue extends MyList {
      * @return
      */
     public MyListElement element(){
-        
-        return new MyListElement(null);
-    }
-            
+        if(this.length() > 0){
+            return this.firstElement;            
+        }else{
+            return null;
+        }    
+    }            
 }
