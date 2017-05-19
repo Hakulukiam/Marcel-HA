@@ -1,9 +1,6 @@
 package ha;
 
 import de.tu_bs.ips.NextFunction;
-import java.util.Arrays;
-import java.util.zip.Adler32;
-import java.util.zip.Checksum;
 import java.util.Scanner;
 
 /**
@@ -14,216 +11,222 @@ public class HA {
         
     public static void main(String[] args) {
         
-        Iterable<Integer[]> a;
-        Scanner scan = new Scanner(System.in);
-        String eingabe = scan.next();
-        System.out.println("Wählen Sie eine DataSource:\n");
-        System.out.println("1: Integer[]");
-        System.out.println("2: Integer");
-        System.out.println("3: String");
-        switch(eingabe){
-            case "1":
-                System.out.println("Integer[] gewählt\n");
-                a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-                    @Override
-                    public Integer[] apply(final Integer[] integers) {
-                        return integers;
-                    }
-                });
-                break;
-            case "2":            
-                System.out.println("Integer\n");
-                a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-                    @Override
-                    public Integer[] apply(final Integer[] integers) {
-                        return integers;
-                    }
-                });
-                break;
-            case "3":
-                System.out.println("String\n");
-                 Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
-                    @Override
-                    public String apply(final Integer[] integers) {
-                        Checksum checksum = new Adler32();
-                        checksum.update(integers[0]);
-                        checksum.update(integers[1]);
-                        checksum.update(integers[2]);
-                        char[] chars = String.valueOf(checksum.getValue()).toCharArray();
-                        for (int i = 0; i < chars.length; i++) {
-                            chars[i] = (char) (chars[i] + 17);
-                        }
-                        return String.valueOf(chars);
-                    }
-                });
-                break;
-        }
+        String datenstruktur;
+        String datasource;
+        Scanner scan = new Scanner(System.in);      
         
-        eingabe = scan.next();
-        System.out.println("Wählen Sie eine Datenstruuktur zum Testen:\n");
+        System.out.println("Wählen Sie eine Datenstruktur zum Testen:");
         System.out.println("1: MyList");
         System.out.println("2: MySortedList");
         System.out.println("3: MyQueue");
         System.out.println("4: MyStack");
+        datenstruktur = scan.next();
+                        
+        System.out.println("\nWählen Sie eine DataSource:");
+        System.out.println("1: Integer[]");
+        System.out.println("2: Integer");
+        System.out.println("3: String");
+        datasource = scan.next();
         
-        switch(eingabe){
+        switch(datenstruktur){
             case "1":
+                System.out.println("MyList gewählt\n");
+                MyList list = new MyList();
+                switch(datasource){
+                    case "1":
+                        System.out.println("Integer[] gewählt\n");
+                        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                            @Override
+                            public Integer[] apply(final Integer[] integers) {
+                                return integers;
+                            }
+                        });
+                        for (Integer[] element : a) {
+                            list.append(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;
+                    case "2":            
+                        System.out.println("Integer gewählt\n");
+                        Iterable<Integer> b = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
+                        for (Integer element : b) {
+                            list.append(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;  
+                    case "3":
+                        System.out.println("String gewählt\n");
+                        Iterable<String> c = new de.tu_bs.ips.StringDataSource(EntryDataSoure.Mode.A);                            
+                        for (String element : c) {
+                            list.append(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;     
+                    default:    
+                        throw new UnsupportedOperationException();         
+                }
+                //TODO Löchen alle Elemente             
+                
+                
                 break;
             case "2":
+                System.out.println("MySortedList gewählt\n");
+                MySortedList listeSorted = new MySortedList();
+                switch(datasource){
+                    case "1":
+                        System.out.println("Integer[] gewählt\n");
+                        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                            @Override
+                            public Integer[] apply(final Integer[] integers) {
+                                return integers;
+                            }
+                        });
+                        for (Integer[] element : a) {
+                            listeSorted.insert(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;
+                    case "2":            
+                        System.out.println("Integer gewählt\n");
+                        Iterable<Integer> b = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
+                        for (Integer element : b) {
+                            listeSorted.insert(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;  
+                    case "3":
+                        System.out.println("String gewählt\n");
+                        Iterable<String> c = new de.tu_bs.ips.StringDataSource(EntryDataSoure.Mode.A);                            
+                        for (String element : c) {
+                            listeSorted.insert(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;
+                    default:    
+                        throw new UnsupportedOperationException();    
+                }           
+                System.out.println("\nLänge beträgt:");
+                System.out.println(listeSorted.length());
+
+                for (Object element : listeSorted) {
+                    MyListElement listelement = (MyListElement) element; 
+                    System.out.println(listelement);
+                }                
+                //TODO Löchen alle Elemente
+                
+                
                 break;
             case "3":
+                System.out.println("MyQueue gewählt\n");
+                MyQueue listeQueue = new MyQueue();
+                switch(datasource){
+                    case "1":
+                        System.out.println("Integer[] gewählt\n");
+                        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                            @Override
+                            public Integer[] apply(final Integer[] integers) {
+                                return integers;
+                            }
+                        });
+                        for (Integer[] element : a) {
+                            listeQueue.add(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;
+                    case "2":            
+                        System.out.println("Integer gewählt\n");
+                        Iterable<Integer> b = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
+                        for (Integer element : b) {
+                            listeQueue.add(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;  
+                    case "3":
+                        System.out.println("String gewählt\n");
+                        Iterable<String> c = new de.tu_bs.ips.StringDataSource(EntryDataSoure.Mode.A);                            
+                        for (String element : c) {
+                            listeQueue.add(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;       
+                    default:    
+                        throw new UnsupportedOperationException();    
+                }  
+                
+                System.out.println("\nLänge beträgt:");
+                System.out.println(listeQueue.length());
+
+                //Element
+                System.out.println("\nDas Erste Element Lautet:");
+                System.out.println(listeQueue.element());
+
+                //Remove
+                System.out.println("\nDas Erste Element wird gelöscht.");
+                listeQueue.remove();
+                System.out.println("Das Neue Erste Element Lautet:");
+                System.out.println(listeQueue.element());
+                System.out.println("\nNeue Länge beträgt:");
+                System.out.println(listeQueue.length());
+                
+                //TODO Löchen alle Elemente
+                
                 break;
             case "4":
+                System.out.println("MyStack gewählt\n");
+                MyStack listeStack = new MyStack();
+                switch(datasource){
+                    case "1":
+                        System.out.println("Integer[] gewählt\n");
+                        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                            @Override
+                            public Integer[] apply(final Integer[] integers) {
+                                return integers;
+                            }
+                        });
+                        for (Integer[] element : a) {
+                            listeStack.push(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;
+                    case "2":            
+                        System.out.println("Integer gewählt\n");
+                        Iterable<Integer> b = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
+                        for (Integer element : b) {
+                            listeStack.push(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;  
+                    case "3":
+                        System.out.println("String gewählt\n");
+                        Iterable<String> c = new de.tu_bs.ips.StringDataSource(EntryDataSoure.Mode.A);                            
+                        for (String element : c) {
+                            listeStack.push(new MyListElement(element));  
+                            System.out.println(element);
+                        }
+                        break;    
+                    default:    
+                        throw new UnsupportedOperationException();
+                }  
+                System.out.println("\nLänge beträgt:");
+                System.out.println(listeStack.length());
+
+                //peek
+                System.out.println("\nDas Element vom Kopf Lautet:");
+                System.out.println(listeStack.peek());
+
+                //pop
+                System.out.println("\nDas Element am Kopf wird gelöscht.");
+                listeStack.pop();
+                System.out.println("Das Neue Erste Element Lautet:");
+                System.out.println(listeStack.peek());
+                System.out.println("\nNeue Länge beträgt:");
+                System.out.println(listeStack.length());
+                
+                //TODO Löchen alle Elemente
+                
                 break;
-                
+            default:
+                 System.out.println("Falsche Eingabe!");
         }
-            
-        
-        
-        /*
-        //TEST 5 MyStack
-        System.out.println("Integer[] SortedList:");
-        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-            @Override
-            public Integer[] apply(final Integer[] integers) {
-                return integers;
-            }
-        });
-        MyStack liste = new MyStack();
-              
-        //push
-        for (Integer[] element : a) {
-            liste.push(new MyListElement(element));  
-            System.out.println(Arrays.toString(element));
-        }                
-        System.out.println("\nLänge beträgt:");
-        System.out.println(liste.length());
-               
-        //peek
-        System.out.println("\nDas Element vom Kopf Lautet:");
-        System.out.println(liste.peek());
-        
-        //pop
-        System.out.println("\nDas Element am Kopf wird gelöscht.");
-        liste.pop();
-        System.out.println("Das Neue Erste Element Lautet:");
-        System.out.println(liste.peek());
-        System.out.println("\nNeue Länge beträgt:");
-        System.out.println(liste.length());
-        */
-        
-        /*
-        //TEST 4 MyQueue
-        System.out.println("Integer[] SortedList:");
-        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-            @Override
-            public Integer[] apply(final Integer[] integers) {
-                return integers;
-            }
-        });
-        MyQueue liste = new MyQueue();
-              
-        //Add
-        for (Integer[] element : a) {
-            liste.add(new MyListElement(element));  
-            System.out.println(Arrays.toString(element));
-        }                
-        System.out.println("\nLänge beträgt:");
-        System.out.println(liste.length());
-        
-        //Element
-        System.out.println("\nDas Erste Element Lautet:");
-        System.out.println(liste.element());
-        
-        //Remove
-        System.out.println("\nDas Erste Element wird gelöscht.");
-        liste.remove();
-        System.out.println("Das Neue Erste Element Lautet:");
-        System.out.println(liste.element());
-        System.out.println("\nNeue Länge beträgt:");
-        System.out.println(liste.length());
-        */       
-        
-        /*
-        //TEST 3 SortedList    
-        System.out.println("Integer[] SortedList:");
-        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-            @Override
-            public Integer[] apply(final Integer[] integers) {
-                return integers;
-            }
-        });
-        MySortedList liste = new MySortedList();
-                       
-        for (Integer[] element : a) {
-            liste.insert(new MyListElement(element));  
-            //System.out.println(Arrays.toString(element));
-        }                
-        System.out.println("\nLänge beträgt:");
-        System.out.println(liste.length());
-        
-        for (Object element : liste) {
-            MyListElement listelement = (MyListElement) element; 
-            System.out.println("Summe:"+listelement.arraySum(listelement.getMyElement()));
-        }  
-        */
-        
-        /*
-        //TEST 2 Compare To
-        Integer[] s = {1,1,1};
-        MyListElement a = new MyListElement(s);
-        Integer[] g = {2,2,2};
-        MyListElement b = new MyListElement(g);
-        
-        System.out.println("Vergleiche a [1 ,1 ,1] mit b [2, 2, 2]");
-        System.out.println(a.compareTo(b));
-        System.out.println("Vergleiche b [2, 2, 2] mit a [1 ,1 ,1]");
-        System.out.println(b.compareTo(a));
-        */
-        
-        /*
-        //TEST1 Liste mit unterschiedlichen Object Typen
-        System.out.println("Int[] Liste:");
-        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
-            @Override
-            public Integer[] apply(final Integer[] integers) {
-                return integers;
-            }
-        });
-        MyList liste = new MyList();
-                       
-        for (Integer[] element : a) {
-            liste.append(new MyListElement(element));  
-            System.out.println(Arrays.toString(element));
-        }
-                
-        System.out.println("\nLänge 1 beträgt:");
-        System.out.println(liste.length());
-        System.out.println("\n================================================================================\n");
-        System.out.println("\nString[] Liste:");
-        Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
-            @Override
-            public String apply(final Integer[] integers) {
-                Checksum checksum = new Adler32();
-                checksum.update(integers[0]);
-                checksum.update(integers[1]);
-                checksum.update(integers[2]);
-                char[] chars = String.valueOf(checksum.getValue()).toCharArray();
-                for (int i = 0; i < chars.length; i++) {
-                    chars[i] = (char) (chars[i] + 17);
-                }
-                return String.valueOf(chars);
-            }
-        });
-        MyList liste2 = new MyList();
-                       
-        for (String element : b) {
-            liste2.append(new MyListElement(element));  
-            System.out.println(element);
-        }
-                
-        System.out.println("\nLänge 2 beträgt:");
-        System.out.println(liste.length());
-        */
     }
 }
