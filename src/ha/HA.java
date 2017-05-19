@@ -13,7 +13,37 @@ public class HA {
         
     public static void main(String[] args) {
         
+        /*
+        //TEST 5 MyStack
+        System.out.println("Integer[] SortedList:");
+        Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+            @Override
+            public Integer[] apply(final Integer[] integers) {
+                return integers;
+            }
+        });
+        MyStack liste = new MyStack();
+              
+        //push
+        for (Integer[] element : a) {
+            liste.push(new MyListElement(element));  
+            System.out.println(Arrays.toString(element));
+        }                
+        System.out.println("\nLänge beträgt:");
+        System.out.println(liste.length());
+               
+        //peek
+        System.out.println("\nDas Element vom Kopf Lautet:");
+        System.out.println(liste.peek());
         
+        //pop
+        System.out.println("\nDas Element am Kopf wird gelöscht.");
+        liste.pop();
+        System.out.println("Das Neue Erste Element Lautet:");
+        System.out.println(liste.peek());
+        System.out.println("\nNeue Länge beträgt:");
+        System.out.println(liste.length());
+        */
         
         /*
         //TEST 4 MyQueue
@@ -102,11 +132,6 @@ public class HA {
         System.out.println("\nLänge 1 beträgt:");
         System.out.println(liste.length());
         System.out.println("\n================================================================================\n");
-        
-        
-        
-        
-        
         System.out.println("\nString[] Liste:");
         Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
             @Override

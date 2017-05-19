@@ -25,8 +25,8 @@ public class MyStack extends MyList{
      */
     public MyListElement pop(){
         if(this.length() > 0){
-            MyListElement ret = new MyListElement(this.lastElement.getMyElement());
-            this.delete(this.lastElement);    
+            MyListElement ret = new MyListElement(this.firstElement.getMyElement());
+            this.delete(this.firstElement);    
             return ret;            
         }else{
             return null;
@@ -39,7 +39,7 @@ public class MyStack extends MyList{
      */
     public MyListElement peek(){
         if(this.length() > 0){
-            return this.lastElement;            
+            return this.firstElement;            
         }else{
             return null;
         }    
