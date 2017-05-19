@@ -110,7 +110,6 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
                 
         if (current != null && current.getMyElement() != null) {
             while (current != null && current.getMyElement() != null) {
-                //System.out.println("1:"+current.getMyListElement()+" 2:"+Element);
                 if (current.equals(element)) {
                     if (current.getprevMyElement() == null) {
                         current.getnextMyElement().setprevMyElement(null);

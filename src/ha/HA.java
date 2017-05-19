@@ -13,6 +13,9 @@ public class HA {
         
     public static void main(String[] args) {
         
+        
+        
+        /*
         //TEST 4 MyQueue
         System.out.println("Integer[] SortedList:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
@@ -42,8 +45,7 @@ public class HA {
         System.out.println(liste.element());
         System.out.println("\nNeue Länge beträgt:");
         System.out.println(liste.length());
-
-       
+        */       
         
         /*
         //TEST 3 SortedList    
