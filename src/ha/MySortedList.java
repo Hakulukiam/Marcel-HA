@@ -30,7 +30,7 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
                     }else{
                         int compareToCurrent = element.compareTo(current);
                         int compareToNext = element.compareTo(current.getnextMyElement());
-                        if(compareToCurrent < 0 && compareToNext > 0){
+                        if(compareToCurrent < 0 && compareToNext >= 0){
                             element.setnextMyElement(current.getnextMyElement());
                             element.setprevMyElement(current);                            
                             current.setnextMyElement(element);
