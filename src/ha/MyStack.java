@@ -16,7 +16,7 @@ public class MyStack extends MyList{
      * @param e
      */
     public void push(MyListElement e){
-        
+        this.insert(e);
     }
     
     /**
@@ -24,7 +24,13 @@ public class MyStack extends MyList{
      * @return
      */
     public MyListElement pop(){
-        
+        if(this.length() > 0){
+            MyListElement ret = new MyListElement(this.lastElement.getMyElement());
+            this.delete(this.lastElement);    
+            return ret;            
+        }else{
+            return null;
+        }      
     }
     
     /**
@@ -32,6 +38,10 @@ public class MyStack extends MyList{
      * @return
      */
     public MyListElement peek(){
-        
+        if(this.length() > 0){
+            return this.lastElement;            
+        }else{
+            return null;
+        }    
     }
 }
