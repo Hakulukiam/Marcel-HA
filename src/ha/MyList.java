@@ -148,13 +148,13 @@ public class MyList implements de.tu_bs.ips.List, Iterator, Iterable {
         return new Iterator() {                       
             @Override
             public boolean hasNext() {
-               return currentElement.getnextMyElement().getMyElement() != null;
+               return currentElement.getnextMyElement() != null;
             }
 
             @Override
             public Object next() {
                 currentElement = currentElement.getnextMyElement();
-                return currentElement.getnextMyElement();
+                return currentElement;
             }            
         };        
     }    
