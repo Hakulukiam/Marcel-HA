@@ -14,7 +14,7 @@ public class HA {
     public static void main(String[] args) {
         
         //TEST 3        
-        System.out.println("Int[] SortedList:");
+        System.out.println("Integer[] SortedList:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
             public Integer[] apply(final Integer[] integers) {
