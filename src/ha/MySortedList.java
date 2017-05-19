@@ -8,9 +8,14 @@ package ha;
 /**
  *
  * @author Markus
+ * @param <T>
  */
-public class MySortedList<T> extends MyList implements  Comparable<T>{
+public class MySortedList<T> extends MyList implements Comparable<T>{
 
+    @Override
+    public void append(Object e) {
+        throw new UnsupportedOperationException("Append ist nicht zugelassen für Sortierte Listen.");
+    }
     
     @Override
     public int compareTo(T t) {
