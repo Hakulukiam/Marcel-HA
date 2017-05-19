@@ -17,6 +17,10 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
         this.sortedInsert(e);
     }
 
+    /**
+     *
+     * @param e
+     */
     public void sortedInsert(Object e) {
         if (this.length() > 0) {
             MyListElement current = this.firstElement;
