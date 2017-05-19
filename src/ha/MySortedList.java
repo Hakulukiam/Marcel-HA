@@ -25,7 +25,8 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
                     MyListElement element = (MyListElement) e;
                     if(current.getnextMyElement() == null){
                         current.setnextMyElement(element);
-                        element.setprevMyElement(current);        
+                        element.setprevMyElement(current);
+                        break;
                     }else{
                         int compareToCurrent = element.compareTo(current);
                         int compareToNext = element.compareTo(current.getnextMyElement());
