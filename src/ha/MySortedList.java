@@ -45,7 +45,8 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
         } else {
             this.currentElement = (MyListElement) e;
             this.firstElement = (MyListElement) e;
-            this.lastElement = (MyListElement) e;                 
+            this.lastElement = (MyListElement) e;
+            System.out.println( this.firstElement.toString());
         }
     }
     

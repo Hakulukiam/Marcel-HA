@@ -42,7 +42,7 @@ public class MyList implements de.tu_bs.ips.List, Iterator {
     public int length() {
         int length = 0;
         MyListElement current = this.firstElement;
-        System.out.println(current.getMyElement().toString());
+        
         if (current.getMyElement() != null) {
             while (current.getMyElement() != null && current.getnextMyElement() != null) {
                 length++;                
