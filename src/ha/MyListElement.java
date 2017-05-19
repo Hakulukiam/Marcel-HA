@@ -98,6 +98,11 @@ public class MyListElement<T> implements Comparable<T> {
         if(this.object instanceof String){
             return this.object.toString();
         }
+        
+        if(this.object == null){
+            return "null";
+        }
+        
         throw new UnsupportedOperationException();  
     }
     
