@@ -7,7 +7,7 @@ package ha;
 
 /**
  *
- * @author Markus
+ * @author Marcel Clemeur 4840095 Gruppe 2C
  * @param <T>
  */
 public class MySortedList<T> extends MyList implements Comparable<T>{

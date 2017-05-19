@@ -10,7 +10,7 @@ import java.util.Iterator;
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
  */
-public class MyList implements de.tu_bs.ips.List, Iterator, Iterable {
+public class MyList implements de.tu_bs.ips.List, Iterable {
     
     public MyListElement firstElement;
     public MyListElement lastElement;
@@ -56,19 +56,10 @@ public class MyList implements de.tu_bs.ips.List, Iterator, Iterable {
     }
     
     @Override
-    public boolean hasNext() {
-        return currentElement.getnextMyElement().getMyElement() != null;
-    }
-
-    @Override
-    public MyListElement next() {
-        return currentElement.getnextMyElement();
-    }
-
-    @Override
     public Comparable first() {
         return this.firstElement.getMyListElement();
     }
+    
     /**
      * 
      * @return this.lastElement.getMyListElement()

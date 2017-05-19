@@ -9,7 +9,7 @@ import de.tu_bs.ips.NextFunction;
 
 /**
  *
- * @author Markus
+ * @author Marcel Clemeur 4840095 Gruppe 2C
  * @param <T>
  */
 public class EntryDataSoure<T> extends de.tu_bs.ips.DataSource {

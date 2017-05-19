@@ -13,8 +13,8 @@ public class HA {
         
     public static void main(String[] args) {
         
-        
-        //TEST 3        
+        /*
+        //TEST 3 SortedList    
         System.out.println("Integer[] SortedList:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
@@ -35,10 +35,10 @@ public class HA {
             MyListElement listelement = (MyListElement) element; 
             System.out.println("Summe:"+listelement.arraySum(listelement.getMyElement()));
         }  
-        
+        */
         
         /*
-        //TEST 2
+        //TEST 2 Compare To
         Integer[] s = {1,1,1};
         MyListElement a = new MyListElement(s);
         
@@ -50,7 +50,7 @@ public class HA {
         */
         
         /*
-        //TEST1
+        //TEST1 Liste mit unterschiedlichen Object Typen
         System.out.println("Int[] Liste:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
             @Override
