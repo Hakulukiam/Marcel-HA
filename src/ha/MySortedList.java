@@ -19,7 +19,7 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
 
     public void sortedInsert(Object e) {
         if (this.length() > 0) {
-            MyListElement current = firstElement;
+            MyListElement current = this.firstElement;
             if (current.getMyElement() != null) {
                 while (current.getMyElement() != null && current.getnextMyElement() != null) {
                     if (current.getnextMyElement().getMyElement() == null) {
