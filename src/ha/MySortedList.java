@@ -20,8 +20,8 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
     public void sortedInsert(Object e) {
         if (this.length() > 0) {
             MyListElement current = this.firstElement;
-            if (current.getMyElement() != null) {
-                while (current.getMyElement() != null && current.getnextMyElement() != null) {
+            if (current.getMyElement() != null) {               
+                while (current.getMyElement() != null) {
                     if (current.getnextMyElement().getMyElement() == null) {
                         if (current.getMyListElement().compareTo(e) > 0) {
                             this.insert(e);
@@ -39,14 +39,19 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
                         break;
                     }
                     
-                    current = current.getnextMyElement();
+                    if(current.getnextMyElement() != null){
+                        current = current.getnextMyElement();
+                    }else{
+                        MyListElement element = (MyListElement) e;
+                        current.setnextMyElement(element);
+                        element.setprevMyElement(current);
+                    }                    
                 }    
             } 
         } else {
             this.currentElement = (MyListElement) e;
             this.firstElement = (MyListElement) e;
             this.lastElement = (MyListElement) e;
-            System.out.println( this.firstElement.toString());
         }
     }
     
