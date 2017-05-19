@@ -22,30 +22,22 @@ public class MySortedList<T> extends MyList implements Comparable<T>{
             MyListElement current = this.firstElement;
             if (current.getMyElement() != null) {               
                 while (current.getMyElement() != null) {
-                    if (current.getnextMyElement().getMyElement() == null) {
-                        if (current.getMyListElement().compareTo(e) > 0) {
-                            this.insert(e);
-                        } else {
-                            this.append(e);
-                        }
-                        break;
-                    }
-                    if (current.getMyListElement().compareTo(e) <= 0 && current.getnextMyElement().getMyListElement().compareTo(e) >= 0) {
-                        MyListElement element = (MyListElement) e;
-                        element.setnextMyElement(current.getnextMyElement());
-                        element.setprevMyElement(current);
+                    MyListElement element = (MyListElement) e;
+                    if(current.getnextMyElement() == null){
                         current.setnextMyElement(element);
-                        element.getnextMyElement().setprevMyElement(element);
-                        break;
-                    }
-                    
-                    if(current.getnextMyElement() != null){
-                        current = current.getnextMyElement();
+                        element.setprevMyElement(current);        
                     }else{
-                        MyListElement element = (MyListElement) e;
-                        current.setnextMyElement(element);
-                        element.setprevMyElement(current);
-                    }                    
+                        int compareToCurrent = element.compareTo(current);
+                        int compareToNext = element.compareTo(current.getnextMyElement());
+                        if(compareToCurrent < 0 && compareToNext > 0){
+                            element.setnextMyElement(current.getnextMyElement());
+                            element.setprevMyElement(current);                            
+                            current.setnextMyElement(element);
+                            element.getnextMyElement().setprevMyElement(element);
+                            break;                                    
+                        }  
+                        current = current.getnextMyElement();
+                    }    
                 }    
             } 
         } else {
