@@ -4,6 +4,7 @@ import de.tu_bs.ips.NextFunction;
 import java.util.Arrays;
 import java.util.zip.Adler32;
 import java.util.zip.Checksum;
+import java.util.Scanner;
 
 /**
  * 
@@ -12,6 +13,72 @@ import java.util.zip.Checksum;
 public class HA {
         
     public static void main(String[] args) {
+        
+        Iterable<Integer[]> a;
+        Scanner scan = new Scanner(System.in);
+        String eingabe = scan.next();
+        System.out.println("Wählen Sie eine DataSource:\n");
+        System.out.println("1: Integer[]");
+        System.out.println("2: Integer");
+        System.out.println("3: String");
+        switch(eingabe){
+            case "1":
+                System.out.println("Integer[] gewählt\n");
+                a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                    @Override
+                    public Integer[] apply(final Integer[] integers) {
+                        return integers;
+                    }
+                });
+                break;
+            case "2":            
+                System.out.println("Integer\n");
+                a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
+                    @Override
+                    public Integer[] apply(final Integer[] integers) {
+                        return integers;
+                    }
+                });
+                break;
+            case "3":
+                System.out.println("String\n");
+                 Iterable<String> b = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<String>() {
+                    @Override
+                    public String apply(final Integer[] integers) {
+                        Checksum checksum = new Adler32();
+                        checksum.update(integers[0]);
+                        checksum.update(integers[1]);
+                        checksum.update(integers[2]);
+                        char[] chars = String.valueOf(checksum.getValue()).toCharArray();
+                        for (int i = 0; i < chars.length; i++) {
+                            chars[i] = (char) (chars[i] + 17);
+                        }
+                        return String.valueOf(chars);
+                    }
+                });
+                break;
+        }
+        
+        eingabe = scan.next();
+        System.out.println("Wählen Sie eine Datenstruuktur zum Testen:\n");
+        System.out.println("1: MyList");
+        System.out.println("2: MySortedList");
+        System.out.println("3: MyQueue");
+        System.out.println("4: MyStack");
+        
+        switch(eingabe){
+            case "1":
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            case "4":
+                break;
+                
+        }
+            
+        
         
         /*
         //TEST 5 MyStack
