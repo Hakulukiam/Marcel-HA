@@ -23,8 +23,14 @@ public class MyQueue extends MyList {
      * Löscht das vorderste Element und gibt dies zurück. Wenn die Warteschlange leer ist, wird null zurückgegeben.
      * @return
      */
-    public Boolean remove(){
-        return null;
+    public MyListElement remove(){
+        if(this.length() > 0){
+            MyListElement ret = this.firstElement;
+            this.delete(ret);    
+            return ret;            
+        }else{
+            return null;
+        }        
     } 
                     
     /**
