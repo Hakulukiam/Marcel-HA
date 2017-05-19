@@ -13,6 +13,7 @@ public class HA {
         
     public static void main(String[] args) {
         
+        
         //TEST 3        
         System.out.println("Integer[] SortedList:");
         Iterable<Integer[]> a = new EntryDataSoure(EntryDataSoure.Mode.A, new NextFunction<Integer[]>() {
@@ -32,17 +33,20 @@ public class HA {
         
         for (Object element : liste) {
             MyListElement listelement = (MyListElement) element; 
-            System.out.println(listelement.toString()+" Summe:"+listelement.arraySum(listelement.getMyElement()));
+            System.out.println("Summe:"+listelement.arraySum(listelement.getMyElement()));
         }  
+        
         
         /*
         //TEST 2
-        Integer[] s = {7,2,3};
-        Integer[] g = {3,4,5};
+        Integer[] s = {1,1,1};
         MyListElement a = new MyListElement(s);
+        
+        Integer[] g = {2,2,2};
         MyListElement b = new MyListElement(g);
         
         System.out.println(a.compareTo(b));
+        System.out.println(b.compareTo(a));
         */
         
         /*
