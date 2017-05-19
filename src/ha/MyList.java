@@ -145,15 +145,16 @@ public class MyList implements de.tu_bs.ips.List, Iterator, Iterable {
 
     @Override
     public Iterator iterator() {
-        return new Iterator() {
+        return new Iterator() {                       
             @Override
             public boolean hasNext() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               return currentElement.getnextMyElement().getMyElement() != null;
             }
 
             @Override
             public Object next() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                currentElement = currentElement.getnextMyElement();
+                return currentElement.getnextMyElement();
             }            
         };        
     }    
