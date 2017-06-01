@@ -12,9 +12,9 @@ import java.util.Iterator;
  */
 public class MyList implements de.tu_bs.ips.List, Iterable {
     
-    public MyListElement firstElement;
-    public MyListElement lastElement;
-    public MyListElement currentElement;
+    private MyListElement firstElement;
+    private MyListElement lastElement;
+    private MyListElement currentElement;
     /**
      * 
      */
@@ -36,6 +36,30 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
     @Override
     public boolean isEmpty() {
         return firstElement.getMyElement() == null && this.lastElement.getMyElement() == null;
+    }
+    
+    public MyListElement getfirstElement(){
+        return this.firstElement;
+    }
+    
+    public MyListElement getlastElement(){
+        return this.lastElement;
+    }
+    
+    public MyListElement getcurrentElement(){
+        return this.currentElement;
+    }
+    
+    public void setfirstElement(MyListElement e){
+        this.firstElement = e;
+    }
+    
+    public void setlastElement(MyListElement e){
+        this.lastElement = e;
+    }
+    
+    public void setcurrentElement(MyListElement e){
+        this.currentElement = e;
     }
 
     @Override
