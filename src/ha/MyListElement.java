@@ -10,7 +10,7 @@ package ha;
  * @author Marcel Clemeur 4840095 Gruppe 2C
  * @param <T>
  */
-public class MyListElement<T> implements Comparable<T> {
+public class MyListElement<T> implements Comparable{
     
     private T object;
     private MyListElement nextMyElement;
@@ -105,9 +105,9 @@ public class MyListElement<T> implements Comparable<T> {
         
         throw new UnsupportedOperationException();  
     }
-    
+
     @Override
-    public int compareTo(T t) {
+    public int compareTo(Object t) {
         MyListElement element = (MyListElement) t;      
                
         if (t == this) {
