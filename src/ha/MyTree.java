@@ -105,7 +105,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public boolean containsValue(Object value) {
         if(!this.isEmpty()){
-            if(this.getParentValue().equals((T) value)){
+            if(this.getParentValue().equals(value)){
                 return true;
             }else{
                 Boolean existsInLeft = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);

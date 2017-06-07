@@ -11,14 +11,23 @@ public class HA {
         
     public static void main(String[] args) {
         
-        Integer[] values = {1,2,3};
+        Integer[] values = {1,1,1};
+        Integer[] values1 = {2,2,2};
+        Integer[] values2 = {3,3,3};
+        Integer[] values3 = {4,4,4};
+        Integer[] values4 = {5,5,5};
+        
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
+        de.tu_bs.ips.Entry value1 = new de.tu_bs.ips.Entry(values1);
+        de.tu_bs.ips.Entry value2 = new de.tu_bs.ips.Entry(values2);
+        de.tu_bs.ips.Entry value3 = new de.tu_bs.ips.Entry(values3);
+        de.tu_bs.ips.Entry value4 = new de.tu_bs.ips.Entry(values4);
         
         MyTree test = new MyTree(10,value);
-        MyTree test1 = new MyTree(20,value);
-        MyTree test2 = new MyTree(30,value);
-        MyTree test3 = new MyTree(25,value);
-        MyTree test4 = new MyTree(40,value);
+        MyTree test1 = new MyTree(20,value1);
+        MyTree test2 = new MyTree(30,value2);
+        MyTree test3 = new MyTree(25,value3);
+        MyTree test4 = new MyTree(40,value4);
         
         test.setRightchild(test1);
         test1.setRightchild(test2);
@@ -28,7 +37,7 @@ public class HA {
         
         System.out.println(test.size());
         System.out.println(test.get(40));
-
+        System.out.println(test.containsValue(values));
         
         /*
         String datenstruktur;
