@@ -248,7 +248,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         }
                         return this.getParentValue();                       
                     }else{ // 3b ich habe ein Rechtes und ein Linkes Kind
-                        this.getLeftchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen  
+                        MyTree Biggest = this.getLeftchild().getBiggestChild();
+                        Biggest.setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
+                        Biggest.setRoot(this.getRoot());    //7 - Wurzel des Ersatz Elementes auf die alte Wurzel Setzen
+                        this.getRightchild().setRoot(Biggest); //8 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten
+ 
                         if(master == false){
                             if(childPos > 0){ 
                                 this.root.setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
@@ -256,8 +260,6 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                                 this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             }
                         }
-                        this.getLeftchild().getBiggestChild().setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
-                        this.getRightchild().setRoot(this.getLeftchild().getBiggestChild()); //7 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten                       
                         return this.getParentValue();
                     }
                 }                
