@@ -10,11 +10,44 @@ import java.util.Iterator;
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
  */
-public class MyTree<T> implements de.tu_bs.ips.Tree, Comparable<T>{
+public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Comparable<T>{
     
-    private de.tu_bs.ips.Entry parent;
+    private K parentKey;
+    private T parentValue;
     private MyTree leftchild;
     private MyTree rightchild;
+
+    public K getParentKey() {
+        return this.parentKey;
+    }
+
+    public void setParentKey(K parentKey) {
+        this.parentKey = parentKey;
+    }
+
+    public T getParentValue() {
+        return parentValue;
+    }
+
+    public void setParentValue(T parentValue) {
+        this.parentValue = parentValue;
+    }
+    
+    public MyTree getLeftchild() {
+        return this.leftchild;
+    }
+    
+    public void setLeftchild(MyTree leftchild) {
+        this.leftchild = leftchild;
+    }
+
+    public MyTree getRightchild() {
+        return this.rightchild;
+    }
+
+    public void setRightchild(MyTree rightchild) {
+        this.rightchild = rightchild;
+    }    
     
     @Override
     public boolean isEmpty() {
