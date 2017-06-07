@@ -9,6 +9,8 @@ import java.util.Iterator;
 /**
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
+ * @param <K> Type of Keys
+ * @param <T> Type of Values
  */
 public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Comparable<T>{
     
@@ -17,6 +19,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private MyTree leftchild;
     private MyTree rightchild;
 
+    public MyTree(K Key, T Value){
+        this.parentKey = Key;
+        this.parentValue = Value;
+    }
+    
     public K getParentKey() {
         return this.parentKey;
     }
@@ -26,7 +33,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     }
 
     public T getParentValue() {
-        return parentValue;
+        return this.parentValue;
     }
 
     public void setParentValue(T parentValue) {

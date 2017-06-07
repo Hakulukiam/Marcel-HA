@@ -11,6 +11,13 @@ public class HA {
         
     public static void main(String[] args) {
         
+        Integer key = 1;
+        Integer[] values = {1,2,3};
+        de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
+        
+        MyTree test = new MyTree(key,value);
+        
+        /*
         String datenstruktur;
         String datasource;
         Scanner scan = new Scanner(System.in);      
@@ -227,6 +234,7 @@ public class HA {
                 break;
             default:
                  System.out.println("Falsche Eingabe!");
-        }
-    }
+        }*/
+        
+    }  
 }
