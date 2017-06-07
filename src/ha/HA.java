@@ -61,6 +61,15 @@ public class HA {
         System.out.println("\nNew Size:");
         System.out.println(test.size());
         
+        System.out.println("\nElement 4:");
+        System.out.println(test.getElement(25).getParentKey());
+        System.out.println(test.getElement(25).getParentValue());
+        System.out.println(test.getElement(25).getRoot().getParentKey());
+        System.out.println("\nElement 5:");
+        System.out.println(test.getElement(40).getParentKey());
+        System.out.println(test.getElement(40).getParentValue());
+        System.out.println(test.getElement(40).getRoot().getParentKey());
+        
         System.out.println(test.getParentValue().equals(searchentry));
         
         
