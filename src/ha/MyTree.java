@@ -77,9 +77,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
        if(currentCompare == 0){
            return this.parentValue;
        }else if(currentCompare < 0){
-           return this.getLeftchild().get(search);
+           return (this.getLeftchild() != null ? this.getLeftchild().get(search) : null);
        }else{
-           return this.getRightchild().get(search);
+           return (this.getRightchild() != null ? this.getRightchild().get(search) : null);
        }
     }
     
