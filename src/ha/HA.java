@@ -23,8 +23,8 @@ public class HA {
         
         test.setRightchild(test1);
         test1.setRightchild(test2);
-        test2.setRightchild(test3);
-        test3.setRightchild(test4);
+        test2.setLeftchild(test3);
+        test2.setRightchild(test4);
         
         
         System.out.println(test.size());
