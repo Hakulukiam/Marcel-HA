@@ -64,7 +64,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public int size() {
         if(!this.isEmpty()){
-            return 1 + this.getLeftchild().size() + this.getRightchild().size();
+            return 1 + (this.getLeftchild() != null ? this.getLeftchild().size() : 0) + (this.getRightchild() != null ? this.getRightchild().size() : 0);
         }else{
             return 0;
         }

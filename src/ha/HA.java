@@ -16,6 +16,8 @@ public class HA {
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
         
         MyTree test = new MyTree(key,value);
+        System.out.println(test.size());
+        
         
         /*
         String datenstruktur;
