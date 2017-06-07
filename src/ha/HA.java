@@ -35,7 +35,10 @@ public class HA {
         
         System.out.println(test.size());
         System.out.println(test.get(25));
-        System.out.println(test.containsValue(value4));
+        
+        System.out.println(test.remove(30));
+        System.out.println(test.size());
+        
         System.out.println(test.getParentValue().equals(searchentry));
         
         
