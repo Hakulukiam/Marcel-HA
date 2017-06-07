@@ -84,7 +84,14 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     @Override
     public boolean containsKey(Comparable key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       int currentCompare = this.getParentKey().compareTo((K) key);
+       if(currentCompare == 0){
+           return true;
+       }else if(currentCompare > 0){
+           return (this.getLeftchild() != null ? this.getLeftchild().containsKey((K) key) : false);
+       }else{
+           return (this.getRightchild() != null ? this.getRightchild().containsKey((K) key) : false);
+       }
     }
 
     @Override
