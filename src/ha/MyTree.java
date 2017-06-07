@@ -11,7 +11,11 @@ import java.util.Iterator;
  * @author Marcel Clemeur 4840095 Gruppe 2C
  */
 public class MyTree<T> implements de.tu_bs.ips.Tree, Comparable<T>{
-
+    
+    private de.tu_bs.ips.Entry parent;
+    private MyTree leftchild;
+    private MyTree rightchild;
+    
     @Override
     public boolean isEmpty() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
