@@ -11,15 +11,14 @@ public class HA {
         
     public static void main(String[] args) {
         
-        Integer key = 1;
         Integer[] values = {1,2,3};
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
         
-        MyTree test = new MyTree(key++,value);
-        MyTree test1 = new MyTree(key++,value);
-        MyTree test2 = new MyTree(key++,value);
-        MyTree test3 = new MyTree(key++,value);
-        MyTree test4 = new MyTree(key++,value);
+        MyTree test = new MyTree(10,value);
+        MyTree test1 = new MyTree(20,value);
+        MyTree test2 = new MyTree(30,value);
+        MyTree test3 = new MyTree(25,value);
+        MyTree test4 = new MyTree(40,value);
         
         test.setRightchild(test1);
         test1.setRightchild(test2);
@@ -28,7 +27,7 @@ public class HA {
         
         
         System.out.println(test.size());
-        System.out.println(test.get(1));
+        System.out.println(test.get(5));
 
         
         /*
