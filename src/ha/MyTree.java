@@ -10,7 +10,7 @@ import java.util.Iterator;
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
  */
-public class MyTree implements de.tu_bs.ips.Tree{
+public class MyTree<T> implements de.tu_bs.ips.Tree, Comparable<T>{
 
     @Override
     public boolean isEmpty() {
@@ -54,6 +54,11 @@ public class MyTree implements de.tu_bs.ips.Tree{
 
     @Override
     public Iterator iterator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int compareTo(T t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
