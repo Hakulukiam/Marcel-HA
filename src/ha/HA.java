@@ -32,6 +32,8 @@ public class HA {
         test.put(30,value2);
         test.put(25,value3);
         test.put(40,value4);
+        System.out.println("\nSize:");
+        System.out.println(test.size());
         
         System.out.println("\nElement 1:");
         System.out.println(test.getElement(10).getParentKey());
@@ -54,8 +56,9 @@ public class HA {
         System.out.println(test.getElement(40).getParentValue());
         System.out.println(test.getElement(40).getRoot().getParentKey());
         
-        
+        System.out.println("\nRemove Element 3:");
         System.out.println(test.remove(30));
+        System.out.println("\nNew Size:");
         System.out.println(test.size());
         
         System.out.println(test.getParentValue().equals(searchentry));

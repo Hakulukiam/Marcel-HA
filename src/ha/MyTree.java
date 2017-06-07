@@ -207,7 +207,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             int currentCompare = this.getParentKey().compareTo((K) key);
             if(currentCompare == 0){
                 Boolean master = (this.getRoot() == null);   //0 - Ermitteln ob wir die Oberste Wurzel sind
-                int childPos = (master == false ? this.compareTo((K) this.getRoot().getLeftchild()) : null); //1 - Ermitteln ob wir rechtes oder linkes Kind sind
+                int childPos = (master == false && this.getRoot().getLeftchild() != null ? this.compareTo((K) this.getRoot().getLeftchild()) : 1); //1 - Ermitteln ob wir rechtes oder linkes Kind sind
                 
                 if(this.getLeftchild() == null){    //2a - Ich habe kein Linkes Kind                   
                     if(this.getRightchild() == null){ //3a - Ich habe keine Kinder
