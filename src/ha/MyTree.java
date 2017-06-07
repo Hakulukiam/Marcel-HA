@@ -12,7 +12,7 @@ import java.util.Iterator;
  * @param <K> Type of Keys
  * @param <T> Type of Values
  */
-public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Comparable<T>{
+public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Comparable<K>{
     
     private K parentKey;
     private T parentValue;
@@ -73,8 +73,12 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public Object get(Comparable key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //(K) key;
+       
+       
+       //return 
     }
-
+    
     @Override
     public boolean containsKey(Comparable key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -106,8 +110,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     }
 
     @Override
-    public int compareTo(T t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    public int compareTo(K t) {
+        return this.parentKey.compareTo(t);
+    }    
 }
