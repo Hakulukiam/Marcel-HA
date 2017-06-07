@@ -38,7 +38,7 @@ public class HA {
         System.out.println(test.size());
         System.out.println(test.get(40));
         System.out.println(test.containsValue(value4));
-        System.out.println(test.containsValue(test.getParentValue().equals(values)));
+        System.out.println(test.getParentValue().equals(values));
         
         
         /*
