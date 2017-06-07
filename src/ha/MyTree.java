@@ -5,6 +5,7 @@
  */
 package ha;
 
+import java.util.HashSet;
 import java.util.Iterator;
 /**
  * 
@@ -35,6 +36,14 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public MyTree(K Key, T Value, MyTree root){
         this.parentKey = Key;
         this.parentValue = Value;
+        this.root = root;
+    }
+
+    public MyTree getRoot() {
+        return this.root;
+    }
+
+    public void setRoot(MyTree root) {
         this.root = root;
     }
     
@@ -178,19 +187,30 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if(this.getLeftchild() == null){    //2a - Ich habe kein Linkes Kind                   
                     if(this.getRightchild() == null){ //3a - Ich habe keine Kinder
                         if(childPos > 0){ 
-                            this.root.setRightchild(null); //4a - Beim Vater Rechts Kind löschen
+                            this.root.setRightchild(null); //4a - Beim Vater Rechtes Kind löschen
                         }else{
                             this.root.setLeftchild(null); //4b - Beim Vater Linkes Kind löschen
                         }
+                        this.setRoot(null); //4c - Wurzel löschen 
                     }else{ // 3b ich habe ein Rechtes Kind
+                        this.getRightchild().setRoot(this.getRoot()); //4 - Wurzel neu Seten     
                         if(childPos > 0){ 
-                            this.root.setRightchild(this.getRightchild()); //4a - Beim Vater als neues Rechts Kind setzten
+                            this.root.setRightchild(this.getRightchild()); //5a - Beim Vater mein rechtes Kind als neues Rechtes Kind setzten
                         }else{
-                            this.root.setLeftchild(this.getLeftchild()); //4b - Beim Vater als neues Links Kind setzten
+                            this.root.setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
                         }
                     }
-                }else{ //2b - Ich habe ein Lines Kind
-                    
+                }else{ //2b - Ich habe ein Linkes Kind
+                    if(this.getRightchild() == null){ //3a - Ich habe kein Rechtes Kind
+                       this.getLeftchild().setRoot(this.getRoot()); //4 - Wurzel neu Seten                   
+                       if(childPos > 0){ 
+                            this.root.setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
+                        }else{
+                            this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
+                        }                        
+                    }else{ // 3b ich habe ein Rechtes Kind
+                        
+                    }
                 }
                 
                 
