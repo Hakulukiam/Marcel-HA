@@ -81,15 +81,15 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     public MyTree getBiggestChild(){
         if(!this.isEmpty()){            
-            return (this.getBiggestChild() != null ? this.getRightchild() : this);
+            return (this.getRightchild() != null ? this.getRightchild().getBiggestChild() : this);
         }else{
             return null;
         }
     }
     
-    public MyTree getsmallestChild(){
+    public MyTree getSmallestChild(){
         if(!this.isEmpty()){            
-            return (this.getsmallestChild() != null ? this.getLeftchild() : this);
+            return (this.getLeftchild() != null ? this.getLeftchild().getSmallestChild() : this);
         }else{
             return null;
         }
