@@ -5,7 +5,7 @@
  */
 package ha;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Iterator;
 /**
  * 
@@ -38,7 +38,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.parentValue = Value;
         this.root = root;
     }
-
+    
     public MyTree getRoot() {
         return this.root;
     }
@@ -109,7 +109,35 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return null;
         }
     }
-       
+    
+    public void printSortedKeys(MyTree currentElement, MyTree lastElement){
+        if(!this.isEmpty()){
+            if(this.getBiggestChild().compareTo(currentElement) != 0){
+                if(currentElement.compareTo(lastElement) == 0){ // Erstes Element
+                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
+                }
+                if(currentElement.getLeftchild() != null && currentElement.getLeftchild().compareTo(lastElement) > 0){ //Check Links
+                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
+                    this.printSortedKeys(currentElement.getLeftchild(),currentElement);
+                }else if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //Check Rechts
+                    if(currentElement.getRightchild().getLeftchild() == null){
+                        System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
+                        this.printSortedKeys(currentElement.getRightchild(),currentElement);
+                    }else{
+                        this.printSortedKeys(currentElement.getRightchild().getLeftchild(),currentElement);
+                    }                    
+                }else if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //Check Wurzel
+                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
+                    System.out.println(currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue());
+                    this.printSortedKeys(currentElement.getRoot(),currentElement);
+                }else         
+                if(currentElement.getRoot() != null){   //Es Gibt noch Wurzeln drüber
+                    this.printSortedKeys(currentElement.getRoot(),currentElement);
+                }                               
+            }        
+        }
+    }
+             
     @Override
     public boolean isEmpty() {
         return this.parentKey == null;
@@ -129,7 +157,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         if(!this.isEmpty()){
             int currentCompare = this.getParentKey().compareTo((K) key);
             if(currentCompare == 0){
-                return this.parentValue;
+                return this.getParentValue();
             }else if(currentCompare > 0){
                 return (this.getLeftchild() != null ? this.getLeftchild().get((K) key) : null);
             }else{
@@ -213,9 +241,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     if(this.getRightchild() == null){ //3a - Ich habe keine Kinder
                         if(master == false){
                             if(childPos > 0){ 
-                                this.root.setRightchild(null); //4a - Beim Vater Rechtes Kind löschen
+                                this.getRoot().setRightchild(null); //4a - Beim Vater Rechtes Kind löschen
                             }else{
-                                this.root.setLeftchild(null); //4b - Beim Vater Linkes Kind löschen
+                                this.getRoot().setLeftchild(null); //4b - Beim Vater Linkes Kind löschen
                             }
                             this.setRoot(null); //4c - Wurzel löschen 
                             return this.getParentValue();
@@ -229,9 +257,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         this.getRightchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen
                         if(master == false){
                             if(childPos > 0){ 
-                                this.root.setRightchild(this.getRightchild()); //5a - Beim Vater mein rechtes Kind als neues Rechtes Kind setzten
+                                this.getRoot().setRightchild(this.getRightchild()); //5a - Beim Vater mein rechtes Kind als neues Rechtes Kind setzten
                             }else{
-                                this.root.setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
+                                this.getRoot().setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
                             }
                         }
                         return this.getParentValue();
@@ -241,9 +269,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         this.getLeftchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen         
                         if(master == false){
                             if(childPos > 0){ 
-                                this.root.setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
+                                this.getRoot().setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
                             }else{
-                                this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
+                                this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             } 
                         }
                         return this.getParentValue();                       
@@ -255,9 +283,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
  
                         if(master == false){
                             if(childPos > 0){ 
-                                this.root.setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
+                                this.getRoot().setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
                             }else{
-                                this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
+                                this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             }
                         }
                         return this.getParentValue();
@@ -290,20 +318,23 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return null;
         }
     }
-
-    @Override
-    public Iterator iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-     
+    
     @Override
     public String toString(){
         if(!this.isEmpty()){
-            return "Tree is not Empty";
+            this.printSortedKeys(this.getSmallestChild(),this.getSmallestChild());
+            return "Tree is Empty";
+            
+            
         }else{
             return "Tree is Empty";
         }       
     }
+
+    @Override
+    public Iterator iterator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }    
 
     /**
      * Compare Trees' Parent Keys

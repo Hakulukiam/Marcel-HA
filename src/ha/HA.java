@@ -31,9 +31,9 @@ public class HA {
         
         test.put(10,value);
         test.put(20,value1);
-        test.put(30,value2);
+        test.put(15,value2);
         test.put(25,value3);
-        test.put(40,value4);
+        test.put(23,value4);
         System.out.println("\nSize:");
         System.out.println(test.size());
         
@@ -45,40 +45,43 @@ public class HA {
         System.out.println(test.getElement(20).getParentKey());
         System.out.println(test.getElement(20).getParentValue());
         System.out.println(test.getElement(20).getRoot().getParentKey());
-        System.out.println("\nElement 30:");
-        System.out.println(test.getElement(30).getParentKey());
-        System.out.println(test.getElement(30).getParentValue());
-        System.out.println(test.getElement(30).getRoot().getParentKey());
+        System.out.println("\nElement 15:");
+        System.out.println(test.getElement(15).getParentKey());
+        System.out.println(test.getElement(15).getParentValue());
+        System.out.println(test.getElement(15).getRoot().getParentKey());
         System.out.println("\nElement 25:");
         System.out.println(test.getElement(25).getParentKey());
         System.out.println(test.getElement(25).getParentValue());
         System.out.println(test.getElement(25).getRoot().getParentKey());
-        System.out.println("\nElement 40:");
-        System.out.println(test.getElement(40).getParentKey());
-        System.out.println(test.getElement(40).getParentValue());
-        System.out.println(test.getElement(40).getRoot().getParentKey());
+        System.out.println("\nElement 23:");
+        System.out.println(test.getElement(23).getParentKey());
+        System.out.println(test.getElement(23).getParentValue());
+        System.out.println(test.getElement(23).getRoot().getParentKey());
         
-        System.out.println("\nRemove Element 30:");
-        System.out.println(test.remove(30));
+        System.out.println("\nPrint Tree Asc:");  
+        test.toString();
+        
+        System.out.println("\nRemove Element 20:");
+        System.out.println(test.remove(20));
         System.out.println("\nNew Size:");
         System.out.println(test.size());
         
-        System.out.println("\nElement 25:");
-        System.out.println(test.getElement(25).getParentKey());
-        System.out.println(test.getElement(25).getParentValue());
-        System.out.println(test.getElement(25).getRoot().getParentKey());
-        System.out.println("\nElement 40:");
-        System.out.println(test.getElement(40).getParentKey());
-        System.out.println(test.getElement(40).getParentValue());
-        System.out.println(test.getElement(40).getRoot().getParentKey());
-        
+        System.out.println("\nElement 15:");
+        System.out.println(test.getElement(15).getParentKey());
+        System.out.println(test.getElement(15).getParentValue());
+        System.out.println(test.getElement(15).getRoot().getParentKey());
+        System.out.println("\nElement 23:");
+        System.out.println(test.getElement(23).getParentKey());
+        System.out.println(test.getElement(23).getParentValue());
+        System.out.println(test.getElement(23).getRoot().getParentKey());
+                
         System.out.println("\nReplace Element 10:");        
         System.out.println(test.replace(10, replaceentry));
         System.out.println("\nElement 10:");
         System.out.println(test.getElement(10).getParentKey());
         System.out.println(test.getElement(10).getParentValue());
         
-        
+
         
         /*
         String datenstruktur;
