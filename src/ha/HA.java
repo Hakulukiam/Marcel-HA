@@ -16,12 +16,14 @@ public class HA {
         Integer[] values2 = {3,3,3};
         Integer[] values3 = {4,4,4};
         Integer[] values4 = {5,5,5};
+        Integer[] search = {1,1,1};
         
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
         de.tu_bs.ips.Entry value1 = new de.tu_bs.ips.Entry(values1);
         de.tu_bs.ips.Entry value2 = new de.tu_bs.ips.Entry(values2);
         de.tu_bs.ips.Entry value3 = new de.tu_bs.ips.Entry(values3);
         de.tu_bs.ips.Entry value4 = new de.tu_bs.ips.Entry(values4);
+        de.tu_bs.ips.Entry searchentry = new de.tu_bs.ips.Entry(search);
         
         MyTree test = new MyTree(10,value);
         MyTree test1 = new MyTree(20,value1);
@@ -38,7 +40,7 @@ public class HA {
         System.out.println(test.size());
         System.out.println(test.get(40));
         System.out.println(test.containsValue(value4));
-        System.out.println(test.getParentValue().equals(values));
+        System.out.println(test.getParentValue().equals(searchentry));
         
         
         /*
