@@ -191,7 +191,6 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         if(!this.isEmpty()){
             int currentCompare = this.getParentKey().compareTo((K) key);
             if(currentCompare == 0){
-                
                 int childPos = this.compareTo((K) this.root.getLeftchild()); //1 - Ermitteln ob wir rechtes oder linkes Kind sind
                 
                 if(this.getLeftchild() == null){    //2a - Ich habe kein Linkes Kind                   
@@ -202,6 +201,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             this.root.setLeftchild(null); //4b - Beim Vater Linkes Kind löschen
                         }
                         this.setRoot(null); //4c - Wurzel löschen 
+                        return this.getParentValue();
                     }else{ // 3b ich habe ein Rechtes Kind
                         this.getRightchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen     
                         if(childPos > 0){ 
@@ -209,6 +209,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         }else{
                             this.root.setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
                         }
+                        return this.getParentValue();
                     }
                 }else{ //2b - Ich habe ein Linkes Kind
                     if(this.getRightchild() == null){ //3a - Ich habe kein Rechtes Kind
@@ -217,7 +218,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             this.root.setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
                         }else{
                             this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
-                        }                        
+                        } 
+                        return this.getParentValue();                       
                     }else{ // 3b ich habe ein Rechtes und ein Linkes Kind
                         this.getLeftchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen                   
                         if(childPos > 0){ 
@@ -225,24 +227,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         }else{
                             this.root.setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                         }
-                        
-                        
-                        
-                        //4 - Erstes leeres rechtes Kind ermitteln
-                
-                //5 - Wurzel vom Rechts Kind auf ergebnis von 4 setzen
-                        
-                        
+                        this.getLeftchild().getBiggestChild().setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
+                        this.getRightchild().setRoot(this.getLeftchild().getBiggestChild()); //7 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten                       
+                        return this.getParentValue();
                     }
-                }
-                
-                
-               
-                
-                
-                
-                
-                
+                }                
             }else if(currentCompare > 0){
                 return (this.getLeftchild() != null ? this.getLeftchild().remove((K) key) : null);
             }else{
