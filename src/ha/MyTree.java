@@ -323,7 +323,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public String toString(){
         if(!this.isEmpty()){
             this.printSortedKeys(this.getSmallestChild(),this.getSmallestChild());
-            return "Tree is Empty";
+            return "Tree is not Empty";
             
             
         }else{
