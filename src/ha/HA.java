@@ -28,7 +28,7 @@ public class HA {
         
         
         System.out.println(test.size());
-        System.out.println(test.get(5));
+        System.out.println(test.get(1));
 
         
         /*

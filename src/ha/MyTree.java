@@ -72,14 +72,13 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Object get(Comparable key) {
-       K search = (K) key;
-       int currentCompare = this.compareTo(search);
+       int currentCompare = this.getParentKey().compareTo((K) key);
        if(currentCompare == 0){
            return this.parentValue;
        }else if(currentCompare < 0){
-           return (this.getLeftchild() != null ? this.getLeftchild().get(search) : null);
+           return (this.getLeftchild() != null ? this.getLeftchild().get((K) key) : null);
        }else{
-           return (this.getRightchild() != null ? this.getRightchild().get(search) : null);
+           return (this.getRightchild() != null ? this.getRightchild().get((K) key) : null);
        }
     }
     
