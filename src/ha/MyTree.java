@@ -72,31 +72,49 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Object get(Comparable key) {
-       int currentCompare = this.getParentKey().compareTo((K) key);
-       if(currentCompare == 0){
-           return this.parentValue;
-       }else if(currentCompare > 0){
-           return (this.getLeftchild() != null ? this.getLeftchild().get((K) key) : null);
-       }else{
-           return (this.getRightchild() != null ? this.getRightchild().get((K) key) : null);
-       }
+        if(!this.isEmpty()){
+            int currentCompare = this.getParentKey().compareTo((K) key);
+            if(currentCompare == 0){
+                return this.parentValue;
+            }else if(currentCompare > 0){
+                return (this.getLeftchild() != null ? this.getLeftchild().get((K) key) : null);
+            }else{
+                return (this.getRightchild() != null ? this.getRightchild().get((K) key) : null);
+            }
+        }else{
+            return null;
+        }
     }
     
     @Override
     public boolean containsKey(Comparable key) {
-       int currentCompare = this.getParentKey().compareTo((K) key);
-       if(currentCompare == 0){
-           return true;
-       }else if(currentCompare > 0){
-           return (this.getLeftchild() != null ? this.getLeftchild().containsKey((K) key) : false);
-       }else{
-           return (this.getRightchild() != null ? this.getRightchild().containsKey((K) key) : false);
-       }
+        if(!this.isEmpty()){
+            int currentCompare = this.getParentKey().compareTo((K) key);
+            if(currentCompare == 0){
+                return true;
+            }else if(currentCompare > 0){
+                return (this.getLeftchild() != null ? this.getLeftchild().containsKey((K) key) : false);
+            }else{
+                return (this.getRightchild() != null ? this.getRightchild().containsKey((K) key) : false);
+            }
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean containsValue(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!this.isEmpty()){
+            if(this.getParentValue().equals((T) value)){
+                return true;
+            }else{
+                Boolean existsInLeft = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);
+                Boolean existsInRight = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);
+                return (existsInLeft != false || existsInRight != false);
+            }
+        }else{
+            return false;
+        }
     }
 
     @Override
