@@ -112,7 +112,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     public void printSortedKeys(MyTree currentElement, MyTree lastElement){
         if(!this.isEmpty()){
-            if(this.getBiggestChild().compareTo(currentElement) != 0){
+            if(this.getBiggestChild().compareTo(currentElement) != 0){ //Bis zum Letzen Element
                 if(currentElement.compareTo(lastElement) == 0){ // Erstes Element
                     System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
                 }
