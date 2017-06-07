@@ -79,6 +79,21 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.rightchild = rightchild;
     }
     
+    public MyTree getElement(Comparable key) {
+        if(!this.isEmpty()){
+            int currentCompare = this.getParentKey().compareTo((K) key);
+            if(currentCompare == 0){
+                return this;
+            }else if(currentCompare > 0){
+                return (this.getLeftchild() != null ? this.getLeftchild().getElement((K) key) : null);
+            }else{
+                return (this.getRightchild() != null ? this.getRightchild().getElement((K) key) : null);
+            }
+        }else{
+            return null;
+        }
+    }
+    
     public MyTree getBiggestChild(){
         if(!this.isEmpty()){            
             return (this.getRightchild() != null ? this.getRightchild().getBiggestChild() : this);
@@ -205,7 +220,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             this.setRoot(null); //4c - Wurzel löschen 
                             return this.getParentValue();
                         }else{
-                            Object ret = this.getParentValue();
+                            Object ret = this.getParentValue(); //Sonderfall: Ist einziges Element im Tree
                             this.setParentKey(null);
                             this.setParentValue(null);
                             return ret;
@@ -283,6 +298,6 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public int compareTo(K t) {
         MyTree tree = (MyTree) t;
-        return this.parentKey.compareTo((K) tree.getParentKey());
+        return this.getParentKey().compareTo((K) tree.getParentKey());
     }    
 }

@@ -33,8 +33,27 @@ public class HA {
         test.put(25,value3);
         test.put(40,value4);
         
-        System.out.println(test.size());
-        System.out.println(test.get(25));
+        System.out.println("\nElement 1:");
+        System.out.println(test.getElement(10).getParentKey());
+        System.out.println(test.getElement(10).getParentValue());
+        System.out.println(test.getElement(10).getRoot());
+        System.out.println("\nElement 2:");
+        System.out.println(test.getElement(20).getParentKey());
+        System.out.println(test.getElement(20).getParentValue());
+        System.out.println(test.getElement(20).getRoot().getParentKey());
+        System.out.println("\nElement 3:");
+        System.out.println(test.getElement(30).getParentKey());
+        System.out.println(test.getElement(30).getParentValue());
+        System.out.println(test.getElement(30).getRoot().getParentKey());
+        System.out.println("\nElement 4:");
+        System.out.println(test.getElement(25).getParentKey());
+        System.out.println(test.getElement(25).getParentValue());
+        System.out.println(test.getElement(25).getRoot().getParentKey());
+        System.out.println("\nElement 5:");
+        System.out.println(test.getElement(40).getParentKey());
+        System.out.println(test.getElement(40).getParentValue());
+        System.out.println(test.getElement(40).getRoot().getParentKey());
+        
         
         System.out.println(test.remove(30));
         System.out.println(test.size());
