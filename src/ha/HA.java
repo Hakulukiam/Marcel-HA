@@ -15,7 +15,18 @@ public class HA {
         Integer[] values = {1,2,3};
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
         
-        MyTree test = new MyTree(key,value);
+        MyTree test = new MyTree(key++,value);
+        MyTree test1 = new MyTree(key++,value);
+        MyTree test2 = new MyTree(key++,value);
+        MyTree test3 = new MyTree(key++,value);
+        MyTree test4 = new MyTree(key++,value);
+        
+        test.setRightchild(test1);
+        test1.setRightchild(test2);
+        test2.setRightchild(test3);
+        test3.setRightchild(test4);
+        
+        
         System.out.println(test.size());
         
         
