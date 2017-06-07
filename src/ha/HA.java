@@ -25,20 +25,16 @@ public class HA {
         de.tu_bs.ips.Entry value4 = new de.tu_bs.ips.Entry(values4);
         de.tu_bs.ips.Entry searchentry = new de.tu_bs.ips.Entry(search);
         
-        MyTree test = new MyTree(10,value);
-        MyTree test1 = new MyTree(20,value1);
-        MyTree test2 = new MyTree(30,value2);
-        MyTree test3 = new MyTree(25,value3);
-        MyTree test4 = new MyTree(40,value4);
+        MyTree test = new MyTree();
         
-        test.setRightchild(test1);
-        test1.setRightchild(test2);
-        test2.setLeftchild(test3);
-        test2.setRightchild(test4);
-        
+        test.put(10,value);
+        test.put(20,value1);
+        test.put(30,value2);
+        test.put(25,value3);
+        test.put(40,value4);
         
         System.out.println(test.size());
-        System.out.println(test.get(40));
+        System.out.println(test.get(25));
         System.out.println(test.containsValue(value4));
         System.out.println(test.getParentValue().equals(searchentry));
         

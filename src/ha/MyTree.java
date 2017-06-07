@@ -19,6 +19,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private MyTree leftchild;
     private MyTree rightchild;
 
+    public MyTree(){
+        this.parentKey = null;
+        this.parentValue = null;
+    }
+    
     public MyTree(K Key, T Value){
         this.parentKey = Key;
         this.parentValue = Value;
