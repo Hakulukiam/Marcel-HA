@@ -18,15 +18,24 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private T parentValue;
     private MyTree leftchild;
     private MyTree rightchild;
+    private MyTree root;
 
     public MyTree(){
         this.parentKey = null;
         this.parentValue = null;
+        this.root = null;
     }
     
     public MyTree(K Key, T Value){
         this.parentKey = Key;
         this.parentValue = Value;
+        this.root = null;
+    }
+    
+    public MyTree(K Key, T Value, MyTree root){
+        this.parentKey = Key;
+        this.parentValue = Value;
+        this.root = root;
     }
     
     public K getParentKey() {
@@ -132,7 +141,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if(this.getLeftchild() != null){
                     return this.getLeftchild().put(key, value);
                 }else{
-                    MyTree InsertTree = new MyTree((K) key,(T) value);
+                    MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     this.setLeftchild(InsertTree);
                     return value;
                 }
@@ -140,7 +149,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if(this.getRightchild() != null){
                     return this.getRightchild().put(key, value);
                 }else{
-                    MyTree InsertTree = new MyTree((K) key,(T) value);
+                    MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     this.setRightchild(InsertTree);
                     return value;
                 }
@@ -154,7 +163,22 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Object remove(Comparable key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!this.isEmpty()){
+            int currentCompare = this.getParentKey().compareTo((K) key);
+            if(currentCompare == 0){
+                
+                
+                
+                
+                
+            }else if(currentCompare > 0){
+                return (this.getLeftchild() != null ? this.getLeftchild().remove((K) key) : null);
+            }else{
+                return (this.getRightchild() != null ? this.getRightchild().remove((K) key) : null);
+            }
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -165,6 +189,15 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public Iterator iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
+    @Override
+    public String toString(){
+        if(!this.isEmpty()){
+            return "Tree is not Empty";
+        }else{
+            return "Tree is Empty";
+        }       
     }
 
     /**
