@@ -28,7 +28,8 @@ public class HA {
         
         
         System.out.println(test.size());
-        
+        System.out.println(test.compareTo(test1));
+        System.out.println(test.compareTo(test));
         
         /*
         String datenstruktur;

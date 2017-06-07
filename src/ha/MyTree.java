@@ -111,6 +111,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public int compareTo(K t) {
-        return this.parentKey.compareTo(t);
+        MyTree tree = (MyTree) t;
+        return this.parentKey.compareTo((K) tree.getParentKey());
     }    
 }
