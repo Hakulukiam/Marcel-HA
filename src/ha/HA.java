@@ -58,9 +58,9 @@ public class HA {
         }
         System.out.println("\n"+n+" Elemente Gelöscht!");
         System.out.println("New Size:");
-        System.out.println(TestTree.size()); 
-     
-
+        System.out.println(TestTree.size());
+        
+        System.out.println(TestTree);
         
         /*
         int a = 30;
