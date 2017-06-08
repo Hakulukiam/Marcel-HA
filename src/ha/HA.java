@@ -27,12 +27,17 @@ public class HA {
         System.out.println("\nSystem Out [toString()]:");
         System.out.println(TestTree);
         
-        System.out.println("\nSearch [get()]:");
+        System.out.println("\nSearch with Keys [get()]:");
         for (Integer key : ints) {
             System.out.println("\nSuche: "+key);
             System.out.println("Gefunden: "+TestTree.get(key));
         }
         
+        System.out.println("\nSearch with Values [containsValue()]:");
+        for (String value : strings) {
+            System.out.println("\nSuche: "+value);
+            System.out.println("Gefunden: "+TestTree.containsValue(value));
+        }
         
         /*
         int a = 30;
