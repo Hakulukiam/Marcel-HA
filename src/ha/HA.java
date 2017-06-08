@@ -116,26 +116,24 @@ public class HA {
         System.out.println(test.getElement(a).getParentKey());
         System.out.println(test.getElement(a).getParentValue());
         
+        /*
         System.out.println("\nIterator:");
         Iterable testiterator = test;                            
         for (Object tree : testiterator) {
             System.out.println(tree);
         }
-        
-        /*
-        System.out.println("\nR Stack:");
-        System.out.println(test.getLStack().pop());      
-        System.out.println(test.getLStack().pop());   
-        System.out.println(test.getLStack().pop());   
-
-        
-        System.out.println("\nL Stack:");
-        System.out.println(test.getRStack().pop());   
-        System.out.println(test.getRStack().pop());      
-        System.out.println(test.getRStack().pop());
-        System.out.println(test.getRStack().pop());
-        System.out.println(test.getRStack().pop());
         */
+        
+        System.out.println("\nR List:");
+        for (Object tree : test.getRStack()) {
+            System.out.println(tree);
+        }
+         
+        System.out.println("\nL List:");
+        for (Object tree : test.getLStack()) {
+            System.out.println(tree);
+        }
+        
 
         
 

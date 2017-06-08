@@ -228,7 +228,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
-                    this.getmasterRoot().rightBranch.append(value);
+                    this.getmasterRoot().rightBranch.append(key);
                     this.setLeftchild(InsertTree);
                     return value;
                 }
@@ -238,7 +238,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
-                    this.getmasterRoot().leftBranch.append(value);
+                    this.getmasterRoot().leftBranch.append(key);
                     this.setRightchild(InsertTree);
                     return value;
                 }
@@ -364,17 +364,15 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                T e = (T) current.getParentValue();
-                Iterable<T> Lvalues = current.leftBranch;
-                for (T string : Lvalues) {
-                    System.out.println(string);
-                }                
                 
-                Iterable<T> Rvalues = current.rightBranch;
-                for (T string : Rvalues) {
-                    System.out.println(string);
-                }                
-                
+                T e = (T) current.getParentKey();
+                if(!current.leftBranch.isEmpty()){
+                    e = (T) current.leftBranch.first();
+                    current.leftBranch.delete(e);
+                }else if(!current.rightBranch.isEmpty()){
+                    e = (T) current.rightBranch.first();
+                    current.rightBranch.delete(e);
+                }          
                 return e;
             }
 
