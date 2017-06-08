@@ -21,16 +21,16 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private MyTree rightchild;
     private MyTree root;
     private MyTree masterRoot;
-    private de.tu_bs.ips.MyStack leftBranch;
-    private de.tu_bs.ips.MyStack rightBranch;
+    private de.tu_bs.ips.MyList leftBranch;
+    private de.tu_bs.ips.MyList rightBranch;
 
     public MyTree(){
         this.parentKey = null;
         this.parentValue = null;
         this.root = null;
         this.masterRoot = this;
-        this.leftBranch = new de.tu_bs.ips.MyStack();
-        this.rightBranch = new de.tu_bs.ips.MyStack();
+        this.leftBranch = new de.tu_bs.ips.MyList();
+        this.rightBranch = new de.tu_bs.ips.MyList();
     }
     
     public MyTree(K Key, T Value){
@@ -38,8 +38,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.parentValue = Value;
         this.root = null;
         this.masterRoot = this;
-        this.leftBranch = new de.tu_bs.ips.MyStack();
-        this.rightBranch = new de.tu_bs.ips.MyStack();
+        this.leftBranch = new de.tu_bs.ips.MyList();
+        this.rightBranch = new de.tu_bs.ips.MyList();
     }
     
     public MyTree(K Key, T Value, MyTree root){
@@ -48,11 +48,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.root = root;
     }
     
-    public de.tu_bs.ips.MyStack getRStack(){
+    public de.tu_bs.ips.MyList getRStack(){
         return this.rightBranch;
     }
     
-    public de.tu_bs.ips.MyStack getLStack(){
+    public de.tu_bs.ips.MyList getLStack(){
         return this.leftBranch;
     }
     
@@ -228,8 +228,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
+                    this.getmasterRoot().rightBranch.append(value);
                     this.setLeftchild(InsertTree);
-                    if(this.getmasterRoot().leftBranch != null)this.getmasterRoot().leftBranch.push(key);
                     return value;
                 }
             }else{
@@ -238,8 +238,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
+                    this.getmasterRoot().leftBranch.append(value);
                     this.setRightchild(InsertTree);
-                    if(this.getmasterRoot().rightBranch != null)this.getmasterRoot().rightBranch.push(key);
                     return value;
                 }
             }
@@ -353,13 +353,10 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public Iterator iterator() {
         return new Iterator<T>() {
             MyTree current = MyTree.this;
-            MyTree root = MyTree.this;
             
             @Override
             public boolean hasNext() {
-                if(current.isEmpty())return false;               
-                if(root.leftBranch.peek() != null)return true;
-                return root.rightBranch.peek() != null;
+                return !current.isEmpty();               
             }
 
             @Override
@@ -367,13 +364,17 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                T e = (T) current.getParentKey();
-                if(root.leftBranch.peek() != null){
-                    current = (MyTree) root.leftBranch.pop();
-                }
-                if(root.rightBranch.peek() != null){
-                    current = (MyTree) root.rightBranch.pop();
-                }
+                T e = (T) current.getParentValue();
+                Iterable<T> Lvalues = current.leftBranch;
+                for (T string : Lvalues) {
+                    System.out.println(string);
+                }                
+                
+                Iterable<T> Rvalues = current.rightBranch;
+                for (T string : Rvalues) {
+                    System.out.println(string);
+                }                
+                
                 return e;
             }
 
