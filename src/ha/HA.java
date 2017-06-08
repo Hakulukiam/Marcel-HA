@@ -91,12 +91,7 @@ public class HA {
         
         System.out.println("\nPrint Tree Asc:");  
         System.out.println(test); 
-        /*
-        System.out.println("\nRemove Element " + b + ":");
-        System.out.println(test.remove(b));
-        System.out.println("\nNew Size:");
-        System.out.println(test.size());
-        */
+
         System.out.println("\nElement " + c + ":");
         System.out.println(test.getElement(c).getParentKey());
         System.out.println(test.getElement(c).getParentValue());
@@ -121,6 +116,13 @@ public class HA {
         for (Object tree : testiterator) {
             System.out.println(tree);
         }
+        
+        System.out.println("\nRemove Element " + c + ":");
+        System.out.println(test.remove(c));
+        test.getBranches().delete(c);
+        System.out.println("\nNew Size:");
+        System.out.println(test.size());      
+        
         
         System.out.println("\nIterator2:");
         Iterable testiterator2 = test;                            
