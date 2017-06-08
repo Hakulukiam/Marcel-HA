@@ -201,7 +201,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 return true;
             }else{
                 Boolean existsInLeft = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);
-                Boolean existsInRight = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);
+                Boolean existsInRight = (this.getRightchild() != null ? this.getRightchild().containsValue(value) : false);
                 return (existsInLeft != false || existsInRight != false);
             }
         }else{

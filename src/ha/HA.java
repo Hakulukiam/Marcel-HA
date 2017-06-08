@@ -23,7 +23,7 @@ public class HA {
             String next = stringIterator.next();
             Object input = TestTree.put(key, next);
             if(input == null){
-                System.out.println("Key Exists!");
+                System.out.println("Key '"+key+"' Exists!");
             }else{
                 System.out.println("Key: "+key+" -> Value: "+next); 
             }
@@ -39,41 +39,45 @@ public class HA {
         
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Delete Elements from Tree [remove()]:");   
-        System.out.println("Delete: "+530);
-        System.out.println("Deleted: "+TestTree.remove(530));
+        System.out.println("Deleting: "+530+ " Deleted: "+TestTree.remove(530));
         System.out.println("Search Key: "+530+" -> Found: "+TestTree.get(530)); 
-        System.out.println("Delete: "+183);
-        System.out.println("Deleted: "+TestTree.remove(183));
+        System.out.println("Deleting: "+183+" Deleted: "+TestTree.remove(183));
         System.out.println("Search Key: "+183+" -> Found: "+TestTree.get(183)); 
-        System.out.println("Delete: "+210);
-        System.out.println("Deleted: "+TestTree.remove(210));
+        System.out.println("Deleting: "+210+" Deleted: "+TestTree.remove(210));
         System.out.println("Search Key: "+210+" -> Found: "+TestTree.get(210));
         System.out.println("\nOld Size: "+size);
         System.out.println("New Size: "+TestTree.size());
 
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Keys [get()]:");
+        int o = 0;
         for (Integer key : ints) {
             System.out.println("Search: "+key);
             Object found = TestTree.get(key);
-            if(found == null){
+            if(found == null){                
                 System.out.println("Not Found");
             }else{
+                o++;
                 System.out.println("Found: "+found);
             }            
         }
+        System.out.println("\n"+o+" Keys Found.");
         
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Values [containsValue()]:");
+        int m = 0;
         for (String value : strings) {
             System.out.println("Search: "+value);
             Boolean found = TestTree.containsValue(value);
             if(found){
+                m++;
                 System.out.println("Found: "+found);           
             }else{
                 System.out.println("Not Found");
             }    
         }
+        System.out.println("\n"+m+" Values Found.");
+        
         
         /*
         String datenstruktur;
