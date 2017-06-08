@@ -31,15 +31,15 @@ public class HA {
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Keys [get()]:");
         for (Integer key : ints) {
-            System.out.println("Suche: "+key);
-            System.out.println("Gefunden: "+TestTree.get(key));
+            System.out.println("Search: "+key);
+            System.out.println("Found: "+TestTree.get(key));
         }
         
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Values [containsValue()]:");
         for (String value : strings) {
-            System.out.println("Suche: "+value);
-            System.out.println("Gefunden: "+TestTree.containsValue(value));
+            System.out.println("Search: "+value);
+            System.out.println("Found: "+TestTree.containsValue(value));
         }
                 
         System.out.println("\n-----------------------------------------------------------------------------");
@@ -47,140 +47,15 @@ public class HA {
         System.out.println("Delete "+i+" Elements from Tree [remove()]:");        
         for (Integer key : ints) {            
             if(i == 0)break;          
-            System.out.println("Lösche: "+key);
-            System.out.println("Gelöscht: "+TestTree.remove(key));
-            System.out.println("Suche Key: "+key+" -> Gefunden: "+TestTree.get(key));             
+            System.out.println("Delete: "+key);
+            System.out.println("Deleted: "+TestTree.remove(key));
+            System.out.println("Search Key: "+key+" -> Found: "+TestTree.get(key));             
             i--;
         }
         System.out.println("\nElemente Gelöscht!");
         System.out.println("New Size:");
         System.out.println(TestTree.size());
-        
-        
-        /*
-        int a = 30;
-        int b = 20;
-        int c = 22;
-        int d = 40;
-        int e = 33;
-        int f = 34;
-        int g = 21;
-       
-        
-        int a = 30;
-        int b = 20;
-        int c = 22;
-        int d = 40;
-        int e = 33;
-        int f = 42;
-        int g = 50;
-        
-        Integer[] values = {1,1,1};
-        Integer[] values1 = {2,2,2};
-        Integer[] values2 = {3,3,3};
-        Integer[] values3 = {4,4,4};
-        Integer[] values4 = {5,5,5};
-        Integer[] values5 = {6,6,6};
-        Integer[] values6 = {7,7,7};
-        Integer[] search = {1,1,1};
-        Integer[] replace = {100,100,100};
-        
-        de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
-        de.tu_bs.ips.Entry value1 = new de.tu_bs.ips.Entry(values1);
-        de.tu_bs.ips.Entry value2 = new de.tu_bs.ips.Entry(values2);
-        de.tu_bs.ips.Entry value3 = new de.tu_bs.ips.Entry(values3);
-        de.tu_bs.ips.Entry value4 = new de.tu_bs.ips.Entry(values4);
-        de.tu_bs.ips.Entry value5 = new de.tu_bs.ips.Entry(values5);
-        de.tu_bs.ips.Entry value6 = new de.tu_bs.ips.Entry(values6);
-        de.tu_bs.ips.Entry searchentry = new de.tu_bs.ips.Entry(search);
-        de.tu_bs.ips.Entry replaceentry = new de.tu_bs.ips.Entry(replace);
-        
-        MyTree test = new MyTree();
-        
-        test.put(a,value);
-        test.put(b,value1);
-        test.put(c,value2);
-        test.put(d,value3);
-        test.put(e,value4);
-        test.put(f,value5);
-        test.put(g,value6);
-        System.out.println("\nSize:");
-        System.out.println(test.size());
-        
-        System.out.println("\nElement " + a + ":");
-        System.out.println(test.getElement(a).getParentKey());
-        System.out.println(test.getElement(a).getParentValue());
-        System.out.println(test.getElement(a).getRoot());
-        System.out.println("\nElement " + b + ":");
-        System.out.println(test.getElement(b).getParentKey());
-        System.out.println(test.getElement(b).getParentValue());
-        System.out.println(test.getElement(b).getRoot().getParentKey());
-        System.out.println("\nElement " + c + ":");
-        System.out.println(test.getElement(c).getParentKey());
-        System.out.println(test.getElement(c).getParentValue());
-        System.out.println(test.getElement(c).getRoot().getParentKey());
-        System.out.println("\nElement " + d + ":");
-        System.out.println(test.getElement(d).getParentKey());
-        System.out.println(test.getElement(d).getParentValue());
-        System.out.println(test.getElement(d).getRoot().getParentKey());
-        System.out.println("\nElement " + e + ":");
-        System.out.println(test.getElement(e).getParentKey());
-        System.out.println(test.getElement(e).getParentValue());
-        System.out.println(test.getElement(e).getRoot().getParentKey());
-        System.out.println("\nElement " + f + ":");
-        System.out.println(test.getElement(f).getParentKey());
-        System.out.println(test.getElement(f).getParentValue());
-        System.out.println(test.getElement(f).getRoot().getParentKey());
-        System.out.println("\nElement " + g + ":");
-        System.out.println(test.getElement(g).getParentKey());
-        System.out.println(test.getElement(g).getParentValue());
-        System.out.println(test.getElement(g).getRoot().getParentKey());
-        
-        System.out.println("\nPrint Tree Asc:");  
-        System.out.println(test); 
-
-        System.out.println("\nElement " + c + ":");
-        System.out.println(test.getElement(c).getParentKey());
-        System.out.println(test.getElement(c).getParentValue());
-        System.out.println(test.getElement(c).getRoot().getParentKey());
-        System.out.println("\nElement " + e + ":");
-        System.out.println(test.getElement(e).getParentKey());
-        System.out.println(test.getElement(e).getParentValue());
-        System.out.println(test.getElement(e).getRoot().getParentKey());
-        System.out.println("\nElement " + g + ":");
-        System.out.println(test.getElement(g).getParentKey());
-        System.out.println(test.getElement(g).getParentValue());
-        System.out.println(test.getElement(g).getRoot().getParentKey());
-                
-        System.out.println("\nReplace Element " + a + ":");        
-        System.out.println(test.replace(a, replaceentry));
-        System.out.println("\nNew Element " + a + ":");
-        System.out.println(test.getElement(a).getParentKey());
-        System.out.println(test.getElement(a).getParentValue());
-                
-        System.out.println("\nIterator:");
-        Iterable testiterator = test;                            
-        for (Object tree : testiterator) {
-            System.out.println(tree);
-        }
-        
-        System.out.println("\nRemove Element " + c + ":");
-        System.out.println(test.remove(c));
-        test.getBranches().delete(c);
-        System.out.println("\nNew Size:");
-        System.out.println(test.size());      
-        
-        
-        System.out.println("\nIterator2:");
-        Iterable testiterator2 = test;                            
-        for (Object tree : testiterator2) {
-            System.out.println(tree);
-        }
-
-*/
-        
-
-        
+               
         /*
         String datenstruktur;
         String datasource;
