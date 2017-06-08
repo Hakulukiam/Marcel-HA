@@ -116,14 +116,15 @@ public class HA {
         System.out.println(test.getElement(a).getParentKey());
         System.out.println(test.getElement(a).getParentValue());
                 
-        System.out.println("\nBranches:");
-        for (Object tree : test.getBranches()) {
-            System.out.println(tree);
-        }
-
         System.out.println("\nIterator:");
         Iterable testiterator = test;                            
         for (Object tree : testiterator) {
+            System.out.println(tree);
+        }
+        
+        System.out.println("\nIterator2:");
+        Iterable testiterator2 = test;                            
+        for (Object tree : testiterator2) {
             System.out.println(tree);
         }
 
