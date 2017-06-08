@@ -283,7 +283,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{
                                 this.getRoot().setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
                             }
-                        }else{
+                        }else{ // Wenn wir die Masterroot Löschen
                             this.setParentKey((K) this.getRightchild().getParentKey());
                             this.setParentValue((T) this.getRightchild().getParentValue());                            
                             this.setRightchild(this.getRightchild().getRightchild());                            
@@ -306,7 +306,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{
                                 this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             } 
-                        }else{
+                        }else{ // Wenn wir die Masterroot Löschen
                             this.setParentKey((K) this.getLeftchild().getParentKey());
                             this.setParentValue((T) this.getLeftchild().getParentValue());
                             this.setLeftchild(this.getLeftchild().getLeftchild());
