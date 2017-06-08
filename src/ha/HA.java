@@ -43,10 +43,10 @@ public class HA {
         }
                 
         System.out.println("\n-----------------------------------------------------------------------------");
-        System.out.println("Delete 10 Elements from Tree [remove()]:");
-        int i = 100;
+        System.out.println("Delete "+Math.floor(TestTree.size()/10)+" Elements from Tree [remove()]:");
+        int i = TestTree.size();
         for (Integer key : ints) {
-            if(i == 0)break;
+            if(i == 0)break;          
             if(i % 10 == 0){
                 System.out.println("Lösche: "+key);
                 System.out.println("Gelöscht: "+TestTree.remove(key));
