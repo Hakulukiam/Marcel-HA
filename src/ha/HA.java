@@ -52,10 +52,12 @@ public class HA {
             System.out.println("Search Key: "+key+" -> Found: "+TestTree.get(key));             
             i--;
         }
-        System.out.println("\nElemente Gelöscht!");
+        System.out.println("\nElements Deleted!");
         System.out.println("New Size:");
         System.out.println(TestTree.size());
                
+        System.out.println(TestTree);
+        
         /*
         String datenstruktur;
         String datasource;
