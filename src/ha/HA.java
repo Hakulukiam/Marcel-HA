@@ -1,6 +1,8 @@
 package ha;
 
 import de.tu_bs.ips.NextFunction;
+import de.tu_bs.ips.StringDataSource;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -10,6 +12,22 @@ import java.util.Scanner;
 public class HA {
         
     public static void main(String[] args) {
+        
+        MyTree TestTree = new MyTree();        
+        Iterable<Integer> ints = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
+        Iterator<String> strings = new StringDataSource(EntryDataSoure.Mode.A).iterator();
+        for (Integer key : ints) {
+            TestTree.put(key, strings.next());
+        }
+        
+        System.out.println("\nSize:");
+        System.out.println(TestTree.size());
+        System.out.println("\nSystem Out (toString):");
+        System.out.println(TestTree);
+        
+        
+        
+        
         /*
         int a = 30;
         int b = 20;
@@ -18,7 +36,7 @@ public class HA {
         int e = 33;
         int f = 34;
         int g = 21;
-        */
+       
         
         int a = 30;
         int b = 20;
@@ -130,7 +148,7 @@ public class HA {
             System.out.println(tree);
         }
 
-
+*/
         
 
         
