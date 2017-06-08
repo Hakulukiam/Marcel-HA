@@ -39,12 +39,16 @@ public class HA {
         
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Delete Elements from Tree [remove()]:");   
+        for (Integer key : ints) {
+            System.out.println("Deleted Key "+key+": "+TestTree.remove(key));
+        }        
+        /*
         System.out.println("Deleting: "+530+ " Deleted: "+TestTree.remove(530));
         System.out.println("Search Key: "+530+" -> Found: "+TestTree.get(530)); 
         System.out.println("Deleting: "+183+" Deleted: "+TestTree.remove(183));
         System.out.println("Search Key: "+183+" -> Found: "+TestTree.get(183)); 
         System.out.println("Deleting: "+210+" Deleted: "+TestTree.remove(210));
-        System.out.println("Search Key: "+210+" -> Found: "+TestTree.get(210));
+        System.out.println("Search Key: "+210+" -> Found: "+TestTree.get(210));*/
         System.out.println("\nOld Size: "+size);
         System.out.println("New Size: "+TestTree.size());
 
