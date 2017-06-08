@@ -111,42 +111,32 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     public String printSortedKeys(MyTree currentElement, MyTree lastElement, String SortedKeys){
         if(!this.isEmpty()){
-             if(this.getBiggestChild().compareTo(currentElement) != 0){ //Bis zum Letzen Element
+                
+                //0 - Letztes Element = Jetzigem Element = Erstes Element
+                //1 - GetSmallest am Root
+                //2 - Wenn rechtes Kind 
+                    //JA -> getSmallest am rechten Kind ist nächstes element
+                    //NEIN 1 -> Vater ist nächstes Element wenn Vater > als er selbst - 2
+                    //NEIN 2 -> Vater ist < als elbst   Vater von Vater ist nächstes element - 2
+                    
                 if(currentElement.compareTo(lastElement) == 0 && currentElement.getRightchild() == null){ // Erstes Element
                     SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-                }
-                
-                if(currentElement.getLeftchild() != null && currentElement.getLeftchild().compareTo(lastElement) > 0){ //Check Links
+                }                    
+                    
+                if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //2 - Wenn rechtes Kind 
                     SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-                    return this.printSortedKeys(currentElement.getLeftchild(),currentElement, SortedKeys);
-                }
-                
-                if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //Check Rechts
-                    if(currentElement.getRightchild().getLeftchild() == null){
-                        SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-                        return this.printSortedKeys(currentElement.getRightchild(),currentElement, SortedKeys);
-                    }else{
-                        return this.printSortedKeys(currentElement.getRightchild().getLeftchild(),currentElement, SortedKeys);
+                    return this.printSortedKeys(currentElement.getRightchild().getSmallestChild(), currentElement, SortedKeys); //JA -> getSmallest am rechten Kind ist nächstes element                     
+                }else{
+                    if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //NEIN 1 -> Vater ist nächstes Element wenn Vater > als letzter Eintrag
+                        SortedKeys = SortedKeys + currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue()+"\n";
+                        return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
+                    }else if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) < 0){
+                        return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
                     }                    
                 }
-                
-                if(currentElement.getRightchild() == null && currentElement.getLeftchild() == null && currentElement.getRoot() != null){
-                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-                    return this.printSortedKeys(currentElement.getRoot(),currentElement, SortedKeys);
-                }
-                
-                if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //Check Wurzel
-                    SortedKeys = SortedKeys + currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue()+"\n";
-                    return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
-                }
-                
-                if(currentElement.getRoot() != null){   //Es Gibt noch Wurzeln drüber
-                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
-                }
-            }else{
-                 SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-             }
-            return SortedKeys;
+                return SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+            
+               
         }else{
             return "Tree is Empty";
         }
