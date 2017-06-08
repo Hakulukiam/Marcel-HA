@@ -50,11 +50,17 @@ public class HA {
             if(i % 10 == 0){
                 System.out.println("Lösche: "+key);
                 System.out.println("Gelöscht: "+TestTree.remove(key));
+                System.out.println("Suche Key: "+key+" -> Gefunden: "+TestTree.get(key));                
             }
             i--;
         }
         System.out.println("\nNew Size:");
         System.out.println(TestTree.size()); 
+        
+        System.out.println("\n-----------------------------------------------------------------------------");
+        System.out.println("Lösche: "+130);
+        System.out.println("Gelöscht: "+TestTree.remove(130));
+        System.out.println("Suche Key: "+130+" -> Gefunden: "+TestTree.get(130));         
         
         /*
         int a = 30;
