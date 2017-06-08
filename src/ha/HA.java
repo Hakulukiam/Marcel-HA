@@ -35,7 +35,7 @@ public class HA {
         Integer[] values4 = {5,5,5};
         Integer[] values5 = {6,6,6};
         Integer[] values6 = {7,7,7};
-         Integer[] search = {1,1,1};
+        Integer[] search = {1,1,1};
         Integer[] replace = {100,100,100};
         
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);

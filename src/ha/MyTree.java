@@ -255,6 +255,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public Object remove(Comparable key) {
         if(!this.isEmpty()){
             int currentCompare = this.getParentKey().compareTo((K) key);
+            this.getmasterRoot().Branches.delete(key);
             if(currentCompare == 0){
                 Boolean master = (this.getRoot() == null);   //0 - Ermitteln ob wir die Oberste Wurzel sind
                 int childPos = (master == false && this.getRoot().getLeftchild() != null ? this.compareTo((K) this.getRoot().getLeftchild()) : 1); //1 - Ermitteln ob wir rechtes oder linkes Kind sind
@@ -354,11 +355,12 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public Iterator iterator() {
         return new Iterator<T>() {
             MyTree current;
-            MyTree root = MyTree.this;            
+            MyTree root = MyTree.this;       
+            Iterator Branches = root.Branches.iterator();
             
             @Override
             public boolean hasNext() {
-                return !root.Branches.isEmpty();   
+                return Branches.hasNext();   
             }
 
             @Override
@@ -367,13 +369,13 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     throw new NoSuchElementException();
                 }
                 if(current == null){
-                    root.Branches.insert(root.getParentKey());
+                   current = root.getmasterRoot(); 
+                   return (T) root.getParentKey();
                 }              
-                
-                T e = (T) root.Branches.first();
-                root.Branches.delete(root.Branches.first());
+               
+                T e = (T) Branches.next();                
                 current = root.getElement((Comparable) e);                
-                return e;
+                return e;        
             }
         };
     }    
