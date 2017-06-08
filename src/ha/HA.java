@@ -43,24 +43,19 @@ public class HA {
         }
                 
         System.out.println("\n-----------------------------------------------------------------------------");
-        System.out.println("Delete "+Math.floor(TestTree.size()/10)+" Elements from Tree [remove()]:");
-        int i = TestTree.size();
-        int n = 0;
+        int i = 5;
+        System.out.println("Delete "+i+" Elements from Tree [remove()]:");        
         for (Integer key : ints) {            
             if(i == 0)break;          
-            if(i % 10 == 0){
-                n++;
-                System.out.println("Lösche: "+key);
-                System.out.println("Gelöscht: "+TestTree.remove(key));
-                System.out.println("Suche Key: "+key+" -> Gefunden: "+TestTree.get(key));                
-            }
+            System.out.println("Lösche: "+key);
+            System.out.println("Gelöscht: "+TestTree.remove(key));
+            System.out.println("Suche Key: "+key+" -> Gefunden: "+TestTree.get(key));             
             i--;
         }
-        System.out.println("\n"+n+" Elemente Gelöscht!");
+        System.out.println("\nElemente Gelöscht!");
         System.out.println("New Size:");
         System.out.println(TestTree.size());
         
-        System.out.println(TestTree);
         
         /*
         int a = 30;
