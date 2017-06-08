@@ -136,7 +136,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }
                 
                 if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //Check Wurzel
-                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
+                    SortedKeys = SortedKeys + currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue()+"\n";
+                    return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
                 }
                 
                 if(currentElement.getRoot() != null){   //Es Gibt noch Wurzeln drüber
