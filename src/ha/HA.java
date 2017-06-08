@@ -15,14 +15,18 @@ public class HA {
         int b = 20;
         int c = 22;
         int d = 40;
-        int e = 42;
+        int e = 33;
+        int f = 34;
+        int g = 50;
         
         Integer[] values = {1,1,1};
         Integer[] values1 = {2,2,2};
         Integer[] values2 = {3,3,3};
         Integer[] values3 = {4,4,4};
         Integer[] values4 = {5,5,5};
-        Integer[] search = {1,1,1};
+        Integer[] values5 = {6,6,6};
+        Integer[] values6 = {7,7,7};
+         Integer[] search = {1,1,1};
         Integer[] replace = {100,100,100};
         
         de.tu_bs.ips.Entry value = new de.tu_bs.ips.Entry(values);
@@ -30,6 +34,8 @@ public class HA {
         de.tu_bs.ips.Entry value2 = new de.tu_bs.ips.Entry(values2);
         de.tu_bs.ips.Entry value3 = new de.tu_bs.ips.Entry(values3);
         de.tu_bs.ips.Entry value4 = new de.tu_bs.ips.Entry(values4);
+        de.tu_bs.ips.Entry value5 = new de.tu_bs.ips.Entry(values5);
+        de.tu_bs.ips.Entry value6 = new de.tu_bs.ips.Entry(values6);
         de.tu_bs.ips.Entry searchentry = new de.tu_bs.ips.Entry(search);
         de.tu_bs.ips.Entry replaceentry = new de.tu_bs.ips.Entry(replace);
         
@@ -40,6 +46,8 @@ public class HA {
         test.put(c,value2);
         test.put(d,value3);
         test.put(e,value4);
+        test.put(f,value5);
+        test.put(g,value6);
         System.out.println("\nSize:");
         System.out.println(test.size());
         
@@ -63,6 +71,14 @@ public class HA {
         System.out.println(test.getElement(e).getParentKey());
         System.out.println(test.getElement(e).getParentValue());
         System.out.println(test.getElement(e).getRoot().getParentKey());
+        System.out.println("\nElement " + f + ":");
+        System.out.println(test.getElement(f).getParentKey());
+        System.out.println(test.getElement(f).getParentValue());
+        System.out.println(test.getElement(f).getRoot().getParentKey());
+        System.out.println("\nElement " + g + ":");
+        System.out.println(test.getElement(g).getParentKey());
+        System.out.println(test.getElement(g).getParentValue());
+        System.out.println(test.getElement(g).getRoot().getParentKey());
         
         System.out.println("\nPrint Tree Asc:");  
         System.out.println(test); 
@@ -80,6 +96,10 @@ public class HA {
         System.out.println(test.getElement(e).getParentKey());
         System.out.println(test.getElement(e).getParentValue());
         System.out.println(test.getElement(e).getRoot().getParentKey());
+         System.out.println("\nElement " + g + ":");
+        System.out.println(test.getElement(g).getParentKey());
+        System.out.println(test.getElement(g).getParentValue());
+        System.out.println(test.getElement(g).getRoot().getParentKey());
                 
         System.out.println("\nReplace Element " + a + ":");        
         System.out.println(test.replace(a, replaceentry));
