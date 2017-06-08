@@ -105,7 +105,7 @@ public class HA {
         System.out.println(test.getElement(e).getParentKey());
         System.out.println(test.getElement(e).getParentValue());
         System.out.println(test.getElement(e).getRoot().getParentKey());
-         System.out.println("\nElement " + g + ":");
+        System.out.println("\nElement " + g + ":");
         System.out.println(test.getElement(g).getParentKey());
         System.out.println(test.getElement(g).getParentValue());
         System.out.println(test.getElement(g).getRoot().getParentKey());
@@ -121,6 +121,9 @@ public class HA {
         System.out.println(test.getRStack().pop());      
         System.out.println(test.getRStack().pop());   
         System.out.println(test.getRStack().pop());   
+        System.out.println(test.getRStack().pop());  
+        System.out.println(test.getRStack().pop());  
+        System.out.println(test.getRStack().pop());  
         System.out.println(test.getRStack().pop());  
         System.out.println("\nL Stack:");
         System.out.println(test.getLStack().pop());   
