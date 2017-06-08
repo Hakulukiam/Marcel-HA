@@ -1,10 +1,11 @@
 package ha;
 
-import de.tu_bs.ips.NextFunction;
 import de.tu_bs.ips.StringDataSource;
 import java.util.Iterator;
+/*
+import de.tu_bs.ips.NextFunction;
 import java.util.Scanner;
-
+*/
 /**
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
@@ -15,17 +16,22 @@ public class HA {
         
         MyTree TestTree = new MyTree();        
         Iterable<Integer> ints = new de.tu_bs.ips.IntegerDataSource(EntryDataSoure.Mode.A);
-        Iterator<String> strings = new StringDataSource(EntryDataSoure.Mode.A).iterator();
+        Iterable<String> strings = new StringDataSource(EntryDataSoure.Mode.A);
+        Iterator<String> stringIterator = strings.iterator();
         for (Integer key : ints) {
-            TestTree.put(key, strings.next());
+            TestTree.put(key, stringIterator.next());
         }
         
         System.out.println("\nSize:");
         System.out.println(TestTree.size());
-        System.out.println("\nSystem Out (toString):");
+        System.out.println("\nSystem Out [toString()]:");
         System.out.println(TestTree);
         
-        
+        System.out.println("\nSearch [get()]:");
+        for (Integer key : ints) {
+            System.out.println("\nSuche: "+key);
+            System.out.println("Gefunden: "+TestTree.get(key));
+        }
         
         
         /*
