@@ -65,7 +65,7 @@ public class HA {
         System.out.println(test.getElement(e).getRoot().getParentKey());
         
         System.out.println("\nPrint Tree Asc:");  
-        test.toString();
+        System.out.println(test); 
         
         System.out.println("\nRemove Element " + b + ":");
         System.out.println(test.remove(b));
