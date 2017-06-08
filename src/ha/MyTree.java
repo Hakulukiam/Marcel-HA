@@ -6,6 +6,7 @@
 package ha;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 /**
  * 
  * @author Marcel Clemeur 4840095 Gruppe 2C
@@ -19,23 +20,48 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private MyTree leftchild;
     private MyTree rightchild;
     private MyTree root;
+    private MyTree masterRoot;
+    private de.tu_bs.ips.MyStack leftBranch;
+    private de.tu_bs.ips.MyStack rightBranch;
 
     public MyTree(){
         this.parentKey = null;
         this.parentValue = null;
         this.root = null;
+        this.masterRoot = this;
+        this.leftBranch = new de.tu_bs.ips.MyStack();
+        this.rightBranch = new de.tu_bs.ips.MyStack();
     }
     
     public MyTree(K Key, T Value){
         this.parentKey = Key;
         this.parentValue = Value;
         this.root = null;
+        this.masterRoot = this;
+        this.leftBranch = new de.tu_bs.ips.MyStack();
+        this.rightBranch = new de.tu_bs.ips.MyStack();
     }
     
     public MyTree(K Key, T Value, MyTree root){
         this.parentKey = Key;
         this.parentValue = Value;
         this.root = root;
+    }
+    
+    public de.tu_bs.ips.MyStack getRStack(){
+        return this.rightBranch;
+    }
+    
+    public de.tu_bs.ips.MyStack getLStack(){
+        return this.leftBranch;
+    }
+    
+    public MyTree getmasterRoot() {
+        return this.masterRoot;
+    }
+
+    public void setmasterRoot(MyTree root) {
+        this.masterRoot = root;
     }
     
     public MyTree getRoot() {
@@ -115,20 +141,20 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     return SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
                 }    
                     
-                if(currentElement.compareTo(lastElement) >= 0){ // Erstes Element
+                if(currentElement.compareTo(lastElement) >= 0){ // Element ist das nächste
                     SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
                 }                    
                     
                 if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //2 - Wenn rechtes Kind 
                     return this.printSortedKeys(currentElement.getRightchild().getSmallestChild(), currentElement, SortedKeys); //JA -> getSmallest am rechten Kind ist nächstes element                     
                 }else{
-                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
+                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys); //Nein -> geh die Wurzel Rauf
                 }      
         }else{
             return "Tree is Empty";
         }
     }
-             
+                
     @Override
     public boolean isEmpty() {
         return this.parentKey == null;
@@ -201,7 +227,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     return this.getLeftchild().put(key, value);
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
+                    InsertTree.setmasterRoot(this.getmasterRoot());
                     this.setLeftchild(InsertTree);
+                    if(this.getmasterRoot().leftBranch != null)this.getmasterRoot().leftBranch.push(InsertTree);
                     return value;
                 }
             }else{
@@ -209,7 +237,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     return this.getRightchild().put(key, value);
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
+                    InsertTree.setmasterRoot(this.getmasterRoot());
                     this.setRightchild(InsertTree);
+                    if(this.getmasterRoot().rightBranch != null)this.getmasterRoot().rightBranch.push(InsertTree);
                     return value;
                 }
             }
@@ -321,7 +351,37 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Iterator iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Iterator<T>() {
+            MyTree current = MyTree.this;
+            MyTree root = MyTree.this;
+            
+            @Override
+            public boolean hasNext() {
+                if(current.isEmpty())return false;               
+                if(root.leftBranch.peek() != null)return true;
+                return root.rightBranch.peek() != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T e = (T) current.getParentKey();
+                if(root.leftBranch.peek() != null){
+                    current = (MyTree) root.leftBranch.pop();
+                }
+                if(root.rightBranch.peek() != null){
+                    current = (MyTree) root.rightBranch.pop();
+                }
+                return e;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }    
 
     /**
