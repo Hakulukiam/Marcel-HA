@@ -290,9 +290,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                                 this.setLeftchild(this.getRightchild().getLeftchild());
                                 this.getLeftchild().setRoot(this);
                             }
-                            this.setmasterRoot(this);
-                            this.getRightchild().setRoot(this);
-                            
+                            if(this.getRightchild() != null){
+                                this.setLeftchild(this.getRightchild().getLeftchild());
+                                this.getRightchild().setRoot(this);
+                            }
+                            this.setmasterRoot(this);           
                         }
                         return this.getParentValue();
                     }
@@ -307,21 +309,23 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             } 
                         }else{ // Wenn wir die Masterroot Löschen
                             this.setParentKey((K) this.getLeftchild().getParentKey());
-                            this.setParentValue((T) this.getLeftchild().getParentValue());
-                            this.setLeftchild(this.getLeftchild().getLeftchild());
-                            if(this.getLeftchild() != null){
+                            this.setParentValue((T) this.getLeftchild().getParentValue());                            
+                            if(this.getRightchild() != null){
                                 this.setRightchild(this.getLeftchild().getRightchild());
                                 this.getRightchild().setRoot(this);
+                            }
+                            if(this.getLeftchild() != null){
+                                this.setLeftchild(this.getLeftchild().getLeftchild());
+                                this.getLeftchild().setRoot(this);
                             }
                             this.setmasterRoot(this);                            
                             this.getLeftchild().setRoot(this);
                         }
                         return this.getParentValue();                       
                     }else{ // 3b ich habe ein Rechtes und ein Linkes Kind
-                        MyTree Biggest = this.getLeftchild().getBiggestChild();
-                        Biggest.setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
-                        Biggest.setRoot(this.getRoot());    //7 - Wurzel des Ersatz Elementes auf die alte Wurzel Setzen
-                        this.getRightchild().setRoot(Biggest); //8 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten
+                        this.getLeftchild().getBiggestChild().setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
+                        this.getLeftchild().getBiggestChild().setRoot(this.getRoot());    //7 - Wurzel des Ersatz Elementes auf die alte Wurzel Setzen
+                        this.getRightchild().setRoot(this.getLeftchild().getBiggestChild()); //8 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten
  
                         if(master == false){
                             if(childPos > 0){ 
@@ -329,6 +333,19 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{
                                 this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             }
+                        }else{ // Wenn wir die Masterroot Löschen
+                            this.setParentKey((K) this.getLeftchild().getParentKey());
+                            this.setParentValue((T) this.getLeftchild().getParentValue());
+                            if(this.getRightchild() != null){
+                                this.setRightchild(this.getLeftchild().getRightchild());
+                                this.getRightchild().setRoot(this);
+                            }
+                            if(this.getLeftchild() != null){
+                                this.setLeftchild(this.getLeftchild().getLeftchild());
+                                this.getLeftchild().setRoot(this);
+                            }
+                            this.setmasterRoot(this);                            
+
                         }
                         return this.getParentValue();
                     }
