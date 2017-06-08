@@ -21,16 +21,14 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     private MyTree rightchild;
     private MyTree root;
     private MyTree masterRoot;
-    private de.tu_bs.ips.MyList leftBranch;
-    private de.tu_bs.ips.MyList rightBranch;
+    private de.tu_bs.ips.MyList Branches;
 
     public MyTree(){
         this.parentKey = null;
         this.parentValue = null;
         this.root = null;
         this.masterRoot = this;
-        this.leftBranch = new de.tu_bs.ips.MyList();
-        this.rightBranch = new de.tu_bs.ips.MyList();
+        this.Branches = new de.tu_bs.ips.MyList();
     }
     
     public MyTree(K Key, T Value){
@@ -38,8 +36,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.parentValue = Value;
         this.root = null;
         this.masterRoot = this;
-        this.leftBranch = new de.tu_bs.ips.MyList();
-        this.rightBranch = new de.tu_bs.ips.MyList();
+        this.Branches = new de.tu_bs.ips.MyList();
     }
     
     public MyTree(K Key, T Value, MyTree root){
@@ -48,12 +45,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.root = root;
     }
     
-    public de.tu_bs.ips.MyList getRStack(){
-        return this.rightBranch;
-    }
-    
-    public de.tu_bs.ips.MyList getLStack(){
-        return this.leftBranch;
+    public de.tu_bs.ips.MyList getBranches(){
+        return this.Branches;
     }
     
     public MyTree getmasterRoot() {
@@ -228,7 +221,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
-                    this.getmasterRoot().rightBranch.append(key);
+                    if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
+                        this.getmasterRoot().Branches.append(key);
+                    }else{
+                        this.getmasterRoot().Branches.insert(key);
+                    }    
                     this.setLeftchild(InsertTree);
                     return value;
                 }
@@ -238,7 +235,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 }else{
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
                     InsertTree.setmasterRoot(this.getmasterRoot());
-                    this.getmasterRoot().leftBranch.append(key);
+                    if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
+                        this.getmasterRoot().Branches.append(key);
+                    }else{
+                        this.getmasterRoot().Branches.insert(key);
+                    }                    
                     this.setRightchild(InsertTree);
                     return value;
                 }
@@ -352,11 +353,12 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public Iterator iterator() {
         return new Iterator<T>() {
-            MyTree current = MyTree.this;
+            MyTree current;
+            MyTree root = MyTree.this;            
             
             @Override
             public boolean hasNext() {
-                return !current.isEmpty();               
+                return !root.Branches.isEmpty();   
             }
 
             @Override
@@ -364,21 +366,14 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
+                if(current == null){
+                    root.Branches.insert(root.getParentKey());
+                }              
                 
-                T e = (T) current.getParentKey();
-                if(!current.leftBranch.isEmpty()){
-                    e = (T) current.leftBranch.first();
-                    current.leftBranch.delete(e);
-                }else if(!current.rightBranch.isEmpty()){
-                    e = (T) current.rightBranch.first();
-                    current.rightBranch.delete(e);
-                }          
+                T e = (T) root.Branches.first();
+                root.Branches.delete(root.Branches.first());
+                current = root.getElement((Comparable) e);                
                 return e;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
             }
         };
     }    
