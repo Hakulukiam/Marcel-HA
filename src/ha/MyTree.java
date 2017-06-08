@@ -224,7 +224,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
                         this.getmasterRoot().Branches.append(key);
                     }else{
-                        this.getmasterRoot().Branches.insert(key);
+                        this.getmasterRoot().Branches.getNext().insert(key);
                     }    
                     this.setLeftchild(InsertTree);
                     return value;
@@ -238,7 +238,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                     if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
                         this.getmasterRoot().Branches.append(key);
                     }else{
-                        this.getmasterRoot().Branches.insert(key);
+                        this.getmasterRoot().Branches.getNext().insert(key);
                     }                    
                     this.setRightchild(InsertTree);
                     return value;

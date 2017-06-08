@@ -116,7 +116,7 @@ public class HA {
         System.out.println(test.getElement(a).getParentKey());
         System.out.println(test.getElement(a).getParentValue());
                 
-        System.out.println("\nR Branches:");
+        System.out.println("\nBranches:");
         for (Object tree : test.getBranches()) {
             System.out.println(tree);
         }
