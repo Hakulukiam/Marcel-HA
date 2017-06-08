@@ -61,6 +61,7 @@ public class HA {
         System.out.println("Lösche: "+130);
         System.out.println("Gelöscht: "+TestTree.remove(130));
         System.out.println("Suche Key: "+130+" -> Gefunden: "+TestTree.get(130));         
+
         
         /*
         int a = 30;

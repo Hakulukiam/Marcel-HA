@@ -283,6 +283,17 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{
                                 this.getRoot().setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
                             }
+                        }else{
+                            this.setParentKey((K) this.getRightchild().getParentKey());
+                            this.setParentValue((T) this.getRightchild().getParentValue());                            
+                            this.setRightchild(this.getRightchild().getRightchild());                            
+                            if(this.getLeftchild() != null){
+                                this.setLeftchild(this.getRightchild().getLeftchild());
+                                this.getLeftchild().setRoot(this);
+                            }
+                            this.setmasterRoot(this);
+                            this.getRightchild().setRoot(this);
+                            
                         }
                         return this.getParentValue();
                     }
@@ -295,6 +306,16 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{
                                 this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
                             } 
+                        }else{
+                            this.setParentKey((K) this.getLeftchild().getParentKey());
+                            this.setParentValue((T) this.getLeftchild().getParentValue());
+                            this.setLeftchild(this.getLeftchild().getLeftchild());
+                            if(this.getLeftchild() != null){
+                                this.setRightchild(this.getLeftchild().getRightchild());
+                                this.getRightchild().setRoot(this);
+                            }
+                            this.setmasterRoot(this);                            
+                            this.getLeftchild().setRoot(this);
                         }
                         return this.getParentValue();                       
                     }else{ // 3b ich habe ein Rechtes und ein Linkes Kind
