@@ -110,33 +110,20 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     }
     
     public String printSortedKeys(MyTree currentElement, MyTree lastElement, String SortedKeys){
-        if(!this.isEmpty()){
-                
-                //0 - Letztes Element = Jetzigem Element = Erstes Element
-                //1 - GetSmallest am Root
-                //2 - Wenn rechtes Kind 
-                    //JA -> getSmallest am rechten Kind ist nächstes element
-                    //NEIN 1 -> Vater ist nächstes Element wenn Vater > als er selbst - 2
-                    //NEIN 2 -> Vater ist < als elbst   Vater von Vater ist nächstes element - 2
+        if(!this.isEmpty()){                                               
+                if(this.getBiggestChild().compareTo(currentElement) == 0){ //Letztes Element
+                    return SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+                }    
                     
-                if(currentElement.compareTo(lastElement) == 0 && currentElement.getRightchild() == null){ // Erstes Element
+                if(currentElement.compareTo(lastElement) >= 0){ // Erstes Element
                     SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
                 }                    
                     
                 if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //2 - Wenn rechtes Kind 
-                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
                     return this.printSortedKeys(currentElement.getRightchild().getSmallestChild(), currentElement, SortedKeys); //JA -> getSmallest am rechten Kind ist nächstes element                     
                 }else{
-                    if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //NEIN 1 -> Vater ist nächstes Element wenn Vater > als letzter Eintrag
-                        SortedKeys = SortedKeys + currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue()+"\n";
-                        return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
-                    }else if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) < 0){
-                        return this.printSortedKeys(currentElement.getRoot(),lastElement,SortedKeys);
-                    }                    
-                }
-                return SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
-            
-               
+                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
+                }      
         }else{
             return "Tree is Empty";
         }

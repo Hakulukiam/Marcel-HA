@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class HA {
         
     public static void main(String[] args) {
-        
+        /*
         int a = 30;
         int b = 20;
         int c = 22;
@@ -18,7 +18,8 @@ public class HA {
         int e = 33;
         int f = 34;
         int g = 21;
-        /*
+        */
+        
         int a = 30;
         int b = 20;
         int c = 22;
@@ -26,7 +27,7 @@ public class HA {
         int e = 33;
         int f = 42;
         int g = 50;
-        */
+        
         Integer[] values = {1,1,1};
         Integer[] values1 = {2,2,2};
         Integer[] values2 = {3,3,3};
