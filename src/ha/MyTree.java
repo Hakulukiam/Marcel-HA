@@ -5,7 +5,6 @@
  */
 package ha;
 
-import java.util.Arrays;
 import java.util.Iterator;
 /**
  * 
@@ -110,31 +109,40 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         }
     }
     
-    public void printSortedKeys(MyTree currentElement, MyTree lastElement){
+    public String printSortedKeys(MyTree currentElement, MyTree lastElement, String SortedKeys){
         if(!this.isEmpty()){
-            if(this.getBiggestChild().compareTo(currentElement) != 0){ //Bis zum Letzen Element
+             if(this.getBiggestChild().compareTo(currentElement) != 0){ //Bis zum Letzen Element
                 if(currentElement.compareTo(lastElement) == 0){ // Erstes Element
-                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
+                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
                 }
+                
                 if(currentElement.getLeftchild() != null && currentElement.getLeftchild().compareTo(lastElement) > 0){ //Check Links
-                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
-                    this.printSortedKeys(currentElement.getLeftchild(),currentElement);
-                }else if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //Check Rechts
+                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+                    return this.printSortedKeys(currentElement.getLeftchild(),currentElement, SortedKeys);
+                }
+                
+                if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //Check Rechts
                     if(currentElement.getRightchild().getLeftchild() == null){
-                        System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
-                        this.printSortedKeys(currentElement.getRightchild(),currentElement);
+                        SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+                        return this.printSortedKeys(currentElement.getRightchild(),currentElement, SortedKeys);
                     }else{
-                        this.printSortedKeys(currentElement.getRightchild().getLeftchild(),currentElement);
+                        return this.printSortedKeys(currentElement.getRightchild().getLeftchild(),currentElement, SortedKeys);
                     }                    
-                }else if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //Check Wurzel
-                    System.out.println(currentElement.getParentKey()+" -> "+currentElement.getParentValue());
-                    System.out.println(currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue());
-                    this.printSortedKeys(currentElement.getRoot(),currentElement);
-                }else         
+                }
+                
+                if(currentElement.getRoot() != null && currentElement.getRoot().compareTo(lastElement) > 0){ //Check Wurzel
+                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+                    SortedKeys = SortedKeys + currentElement.getRoot().getParentKey()+" -> "+currentElement.getRoot().getParentValue()+"\n";
+                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
+                }
+                
                 if(currentElement.getRoot() != null){   //Es Gibt noch Wurzeln drüber
-                    this.printSortedKeys(currentElement.getRoot(),currentElement);
-                }                               
-            }        
+                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys);
+                }
+            }
+            return SortedKeys;
+        }else{
+            return "Tree is Empty";
         }
     }
              
@@ -322,10 +330,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public String toString(){
         if(!this.isEmpty()){
-            this.printSortedKeys(this.getSmallestChild(),this.getSmallestChild());
-            return "Tree is not Empty";
-            
-            
+            return this.printSortedKeys(this.getSmallestChild(),this.getSmallestChild(), "");                  
         }else{
             return "Tree is Empty";
         }       
