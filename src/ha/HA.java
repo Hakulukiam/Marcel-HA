@@ -41,8 +41,10 @@ public class HA {
             System.out.println("Search: "+value);
             System.out.println("Found: "+TestTree.containsValue(value));
         }
-                
+               
+        
         System.out.println("\n-----------------------------------------------------------------------------");
+        /*
         int i = 5;
         System.out.println("Delete "+i+" Elements from Tree [remove()]:");        
         for (Integer key : ints) {            
@@ -55,8 +57,27 @@ public class HA {
         System.out.println("\nElements Deleted!");
         System.out.println("New Size:");
         System.out.println(TestTree.size());
-               
-        System.out.println(TestTree);
+        */
+        
+        /*
+        System.out.println("Delete: "+130);
+        System.out.println("Deleted: "+TestTree.remove(130));
+        System.out.println("Search Key: "+130+" -> Found: "+TestTree.get(130));
+        */
+        System.out.println("Delete: "+530);
+        System.out.println("Deleted: "+TestTree.remove(530));
+        System.out.println("Search Key: "+530+" -> Found: "+TestTree.get(530)); 
+        System.out.println("Delete: "+183);
+        System.out.println("Deleted: "+TestTree.remove(183));
+        System.out.println("Search Key: "+183+" -> Found: "+TestTree.get(183)); 
+        System.out.println("Delete: "+210);
+        System.out.println("Deleted: "+TestTree.remove(210));
+        System.out.println("Search Key: "+210+" -> Found: "+TestTree.get(210));
+        System.out.println("New Size:");
+        System.out.println(TestTree.size());
+        
+        
+        //System.out.println(TestTree);
         
         /*
         String datenstruktur;
