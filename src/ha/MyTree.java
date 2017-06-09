@@ -255,101 +255,98 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     public Object remove(Comparable key) {
         if(!this.isEmpty()){
             int currentCompare = this.getParentKey().compareTo((K) key);            
-            if(currentCompare == 0){
-                Boolean master = (this.getRoot() == null);   //0 - Ermitteln ob wir die Oberste Wurzel sind
-                int childPos = (master == false && this.getRoot().getLeftchild() != null ? this.compareTo((K) this.getRoot().getLeftchild()) : 1); //1 - Ermitteln ob wir rechtes oder linkes Kind sind                
-                if(this.getLeftchild() == null){    //2a - Ich habe kein Linkes Kind                   
-                    if(this.getRightchild() == null){ //3a - Ich habe keine Kinder
-                        if(master == false){
-                            if(childPos > 0){ 
-                                this.getRoot().setRightchild(null); //4a - Beim Vater Rechtes Kind löschen
-                            }else{
-                                this.getRoot().setLeftchild(null); //4b - Beim Vater Linkes Kind löschen
-                            }
-                            this.setRoot(null); //4c - Wurzel löschen 
-                            return this.getParentValue();
-                        }else{
-                            Object ret = this.getParentValue(); //Sonderfall: Ist einziges Element im Tree
-                            this.setParentKey(null);
-                            this.setParentValue(null);
-                            return ret;
-                        }                        
-                    }else{ // 3b ich habe ein Rechtes Kind
-                        this.getRightchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen
-                        if(master == false){
-                            if(childPos > 0){ 
-                                this.getRoot().setRightchild(this.getRightchild()); //5a - Beim Vater mein rechtes Kind als neues Rechtes Kind setzten
-                            }else{
-                                this.getRoot().setLeftchild(this.getRightchild()); //5b - Beim Vater mein rechtes Kind als neues Linkes Kind setzten
-                            }
-                        }else{ // Wenn wir die Masterroot Löschen
-                            this.setParentKey((K) this.getRightchild().getParentKey());
-                            this.setParentValue((T) this.getRightchild().getParentValue());                            
-                            this.setRightchild(this.getRightchild().getRightchild());                            
-                            if(this.getLeftchild() != null){
-                                this.setLeftchild(this.getRightchild().getLeftchild());
-                                this.getLeftchild().setRoot(this);
-                            }
-                            if(this.getRightchild() != null){
-                                this.setLeftchild(this.getRightchild().getLeftchild());
-                                this.getRightchild().setRoot(this);
-                            }
-                            this.setmasterRoot(this);           
-                        }
-                        return this.getParentValue();
-                    }
-                }else{ //2b - Ich habe ein Linkes Kind
-                    if(this.getRightchild() == null){ //3a - Ich habe kein Rechtes Kind
-                        this.getLeftchild().setRoot(this.getRoot()); //4 - Wurzel neu Setzen         
-                        if(master == false){
-                            if(childPos > 0){ 
-                                this.getRoot().setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
-                            }else{
-                                this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
+            if(currentCompare == 0){                
+                T ret = this.parentValue;
+                if(this.leftchild != null || this.rightchild != null){ //Ich habe ein rechts oder ein Linkes Kind
+                    if(this.root != null){ // Ich habe einen Vater
+                        int childPos = (this.root.leftchild != null ? this.compareTo((K) this.root.leftchild) : 1); //Ermitteln ob wir rechtes oder linkes Kind sind 0 - Links | 1 - Rechts
+                        if(this.leftchild != null && this.rightchild != null){ //Ich habe zwei Kinder
+                            MyTree Biggest = this.leftchild.getBiggestChild();
+                            this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen  
+                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                                this.leftchild = this.leftchild.leftchild;
+                                this.leftchild.root = this;
                             } 
-                        }else{ // Wenn wir die Masterroot Löschen
-                            this.setParentKey((K) this.getLeftchild().getParentKey());
-                            this.setParentValue((T) this.getLeftchild().getParentValue());                            
-                            if(this.getRightchild() != null){
-                                this.setRightchild(this.getLeftchild().getRightchild());
-                                this.getRightchild().setRoot(this);
+                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
+                                this.rightchild = this.leftchild.rightchild;
+                                this.rightchild.root = this;
                             }
-                            if(this.getLeftchild() != null){
-                                this.setLeftchild(this.getLeftchild().getLeftchild());
-                                this.getLeftchild().setRoot(this);
-                            }
-                            this.setmasterRoot(this);                            
-                            this.getLeftchild().setRoot(this);
+                            if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
+                            }else{ //Ich bin ein Linkes Kind                            
+                                this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
+                            }                            
                         }
-                        return this.getParentValue();                       
-                    }else{ // 3b ich habe ein Rechtes und ein Linkes Kind
-                        this.getLeftchild().getBiggestChild().setRightchild(this.getRightchild()); //6 - Rechtes Kind des größten Linken Kindes setzten
-                        this.getLeftchild().getBiggestChild().setRoot(this.getRoot());    //7 - Wurzel des Ersatz Elementes auf die alte Wurzel Setzen
-                        this.getRightchild().setRoot(this.getLeftchild().getBiggestChild()); //8 - Wurzel vom Rechten Kind auf größtes Linkes Kind setzten
- 
-                        if(master == false){
-                            if(childPos > 0){ 
-                                this.getRoot().setRightchild(this.getLeftchild()); //5a - Beim Vater mein linkes Kind als neues Rechtes Kind setzten
-                            }else{
-                                this.getRoot().setLeftchild(this.getLeftchild()); //5b - Beim Vater mein linkes Kind als neues Linkes Kind setzten
-                            }
-                        }else{ // Wenn wir die Masterroot Löschen
-                            this.setParentKey((K) this.getLeftchild().getParentKey());
-                            this.setParentValue((T) this.getLeftchild().getParentValue());
-                            if(this.getRightchild() != null){
-                                this.setRightchild(this.getLeftchild().getRightchild());
-                                this.getRightchild().setRoot(this);
-                            }
-                            if(this.getLeftchild() != null){
-                                this.setLeftchild(this.getLeftchild().getLeftchild());
-                                this.getLeftchild().setRoot(this);
-                            }
-                            this.setmasterRoot(this);                            
-
+                        if(this.leftchild != null){ // Ich habe nur ein Linkes Kind  
+                            this.leftchild.root = this.root;
+                            if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
+                            }else{ //Ich bin ein Linkes Kind                            
+                                this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
+                            }       
+                            
+                        }                        
+                        if(this.rightchild != null){ //Ich habe nur ein Rechtes Kind
+                            this.rightchild.root = this.root;
+                            if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                this.root.rightchild = this.rightchild;  //Das Rechte Kind meiner Wurzel auf mein rechtes kind setzen               
+                            }else{ //Ich bin ein Linkes Kind                            
+                                this.root.leftchild = this.rightchild;   //Das Linke Kind meiner Wurzel auf mein rechtes kind setzen
+                            }                 
                         }
-                        return this.getParentValue();
+                        return ret;
+                    }else{ //Ich bin die Oberste Wurzel                          
+                        if(this.leftchild != null && this.rightchild != null){ //Ich habe zwei Kinder                            
+                            MyTree Biggest = this.leftchild.getBiggestChild();
+                            this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen
+                            this.parentKey = (K) this.leftchild.parentKey;
+                            this.parentValue = (T) this.leftchild.parentValue;   
+                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                                this.leftchild = this.leftchild.leftchild;
+                                this.leftchild.root = this;
+                            } 
+                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
+                                this.rightchild = this.leftchild.rightchild;
+                                this.rightchild.root = this;
+                            }
+                        }else if(this.leftchild != null){ //Ich habe nur ein Linkes Kind
+                            this.parentKey = (K) this.leftchild.parentKey;
+                            this.parentValue = (T) this.leftchild.parentValue; 
+                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                                this.leftchild = this.leftchild.leftchild;                                
+                            }    
+                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
+                                this.rightchild = this.leftchild.rightchild; 
+                            }   
+                            this.leftchild.root = this;
+                        }else{ //Ich habe nur ein Rechtes Kind
+                            this.parentKey = (K) this.rightchild.parentKey;
+                            this.parentValue = (T) this.rightchild.parentValue;
+                            if(this.rightchild.leftchild != null){//Linke Kinder meines Rechten Kindes Übernehmen
+                                this.rightchild = this.rightchild.leftchild;
+                            }    
+                            if(this.rightchild.rightchild != null){//Rechte Kinder meines Rechten Kindes Übernehmen
+                                this.rightchild = this.rightchild.rightchild;                                
+                            }   
+                            this.rightchild.root = this;
+                        }    
+                        return ret;
+                    }                                            
+                }else{ //Ich habe keine Kinder
+                    if(this.root != null){ // Ich habe einen Vater
+                        int childPos = (this.root.leftchild != null ? this.compareTo((K) this.root.leftchild) : 1); //Ermitteln ob wir rechtes oder linkes Kind sind 0 - Links | 1 - Rechts
+                        if(childPos > 0){ //Ich bin ein Rechtes Kind
+                            this.root.rightchild = null;
+                        }else{ //Ich bin ein Linkes Kind
+                            this.root.leftchild = null;
+                        }          
+                    }else{ // Ich habe keinen Vater -> Ich bin alleine im Baum
+                        this.parentKey = null;
+                        this.parentValue = null;
+                        this.masterRoot = null;
                     }
-                }                
+                    return ret;
+                }               
             }else if(currentCompare > 0){
                 return (this.getLeftchild() != null ? this.getLeftchild().remove((K) key) : null);
             }else{
