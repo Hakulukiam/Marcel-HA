@@ -306,32 +306,44 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
                                 this.rightchild = this.leftchild.rightchild; 
                                 this.rightchild.root = this;
+                            }else{
+                                this.rightchild = null;
                             }  
                             if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
                                 this.leftchild = this.leftchild.leftchild;        
                                 this.leftchild.root = this;
-                            }
+                            }else{
+                                this.leftchild = null;
+                            }  
                         }else if(this.leftchild != null){ //Ich habe nur ein Linkes Kind
                             this.parentKey = (K) this.leftchild.parentKey;
                             this.parentValue = (T) this.leftchild.parentValue; 
                             if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
                                 this.rightchild = this.leftchild.rightchild; 
                                 this.rightchild.root = this;
-                            }  
+                            }else{
+                                this.rightchild = null;
+                            }
                             if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
                                 this.leftchild = this.leftchild.leftchild;        
                                 this.leftchild.root = this;
-                            }                                                         
+                            }else{
+                                this.leftchild = null;
+                            }                                                      
                         }else{ //Ich habe nur ein Rechtes Kind
                             this.parentKey = (K) this.rightchild.parentKey;
                             this.parentValue = (T) this.rightchild.parentValue;
                             if(this.rightchild.leftchild != null){//Rechte Kinder meines Rechten Kindes Übernehmen
                                 this.leftchild = this.rightchild.leftchild;    
                                 this.leftchild.root = this;
-                            }    
+                            }else{
+                                this.leftchild = null;
+                            }     
                             if(this.rightchild.rightchild != null){//Linke Kinder meines Rechten Kindes Übernehmen
                                 this.rightchild = this.rightchild.rightchild;
                                 this.rightchild.root = this;
+                            }else{
+                                this.rightchild = null;
                             }                                                          
                         }    
                         return ret;
