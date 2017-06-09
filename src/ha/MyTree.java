@@ -254,7 +254,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public Object remove(Comparable key) {
         if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);            
+            int currentCompare = this.getParentKey().compareTo((K) key);  
+            if(key.equals(153))System.out.println("153 ist da!");
             if(currentCompare == 0){                
                 T ret = this.parentValue;
                 if(this.leftchild != null || this.rightchild != null){ //Ich habe ein rechts oder ein Linkes Kind
