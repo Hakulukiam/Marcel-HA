@@ -277,8 +277,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                                 this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
                             }else{ //Ich bin ein Linkes Kind                            
                                 this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
-                            }       
-                            
+                            }                              
                         }                        
                         if(this.rightchild != null){ //Ich habe nur ein Rechtes Kind
                             this.rightchild.root = this.root;
