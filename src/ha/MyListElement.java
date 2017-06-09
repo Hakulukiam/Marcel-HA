@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ha;
 
 /**
@@ -10,7 +6,7 @@ package ha;
  * @author Marcel Clemeur 4840095 Gruppe 2C
  * @param <T>
  */
-public class MyListElement<T> implements Comparable{
+public class MyListElement<T> implements Comparable {
     
     private T object;
     private MyListElement nextMyElement;
@@ -76,7 +72,7 @@ public class MyListElement<T> implements Comparable{
     }
     /**
      * 
-     * @param t
+     * @param t wird uebergeben
      * @return  object[0] + object[1] + object[2]
      */
     public int arraySum(T t) {
@@ -86,20 +82,20 @@ public class MyListElement<T> implements Comparable{
     
     @Override
     public String toString() {
-        if(this.object instanceof Integer){
+        if (this.object instanceof Integer) {
             return this.object.toString();
         }
 
-        if(this.object instanceof Integer[]){
+        if (this.object instanceof Integer[]) {
             Integer[] intarr = (Integer[]) this.object;
-            return intarr[0]+" "+intarr[1]+" "+intarr[2];
+            return intarr[0] + " " + intarr[1] + " " + intarr[2];
         }
 
-        if(this.object instanceof String){
+        if (this.object instanceof String) {
             return this.object.toString();
         }
         
-        if(this.object == null){
+        if (this.object == null) {
             return "null";
         }
         
@@ -114,21 +110,25 @@ public class MyListElement<T> implements Comparable{
             return 0;
         }
         
-        if(element.getMyElement().getClass().equals(this.object.getClass())){
+        if (element.getMyElement().getClass().equals(this.object.getClass())) {
         
-            if(element.getMyElement() instanceof Integer){
+            if (element.getMyElement() instanceof Integer) {
                 Integer a = (Integer) element.getMyElement();
                 Integer b = (Integer) this.object;
                 return b.compareTo(a);
             }
 
-            if(element.getMyElement() instanceof Integer[]){
-                if(this.arraySum((T) element.getMyElement()) > this.arraySum((T) this.object))return -1;
-                if(this.arraySum((T) element.getMyElement()) < this.arraySum((T) this.object))return 1;
+            if (element.getMyElement() instanceof Integer[]) {
+                if (this.arraySum((T) element.getMyElement()) > this.arraySum((T) this.object)) {
+                    return -1;
+                }
+                if (this.arraySum((T) element.getMyElement()) < this.arraySum((T) this.object)) {
+                    return 1;
+                }
                 return 0;
             }
 
-            if(element.getMyElement() instanceof String){
+            if (element.getMyElement() instanceof String) {
                 String a = (String) element.getMyElement();
                 String b = (String) this.object;
                 return b.compareTo(a);

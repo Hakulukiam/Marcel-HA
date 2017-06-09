@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ha;
 
 import java.util.Iterator;
@@ -37,28 +33,46 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
     public boolean isEmpty() {
         return firstElement.getMyElement() == null && this.lastElement.getMyElement() == null;
     }
-    
-    public MyListElement getfirstElement(){
+    /**
+     * 
+     *@return firstElement
+    */
+    public MyListElement getfirstElement() {
         return this.firstElement;
     }
-    
-    public MyListElement getlastElement(){
+    /**
+     * 
+     *@return lastElement
+    */
+    public MyListElement getlastElement() {
         return this.lastElement;
     }
-    
-    public MyListElement getcurrentElement(){
+    /**
+     * 
+     *@return currentElement
+    */
+    public MyListElement getcurrentElement() {
         return this.currentElement;
     }
-    
-    public void setfirstElement(MyListElement e){
+    /**
+     * 
+     * @param e setter
+    */
+    public void setfirstElement(MyListElement e) {
         this.firstElement = e;
     }
-    
-    public void setlastElement(MyListElement e){
+    /**
+     * 
+     * @param e setter
+    */
+    public void setlastElement(MyListElement e) {
         this.lastElement = e;
     }
-    
-    public void setcurrentElement(MyListElement e){
+    /**
+     * 
+     * @param e setter
+    */
+    public void setcurrentElement(MyListElement e) {
         this.currentElement = e;
     }
 
@@ -69,9 +83,9 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
         if (current.getMyElement() != null) {
             while (current.getMyElement() != null) {
                 length++;
-                if(current.getnextMyElement() != null){
+                if (current.getnextMyElement() != null) {
                     current = current.getnextMyElement();
-                }else{
+                } else {
                     break;
                 }               
             }
@@ -163,7 +177,7 @@ public class MyList implements de.tu_bs.ips.List, Iterable {
         return new Iterator() {                       
             @Override
             public boolean hasNext() {
-               return currentElement.getnextMyElement() != null;
+                return currentElement.getnextMyElement() != null;
             }
 
             @Override

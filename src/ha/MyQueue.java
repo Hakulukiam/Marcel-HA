@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ha;
 
 /**
@@ -13,34 +9,34 @@ public class MyQueue extends MyList {
 
     /**
      * Fügt das Element e ans Ende der Warteschlange ein. 
-     * @param e
+     * @param e wird uebergeben
      */
-    public void add(MyListElement e){
+    public void add(MyListElement e) {
         this.append(e);
     } 
             
     /**
      * Löscht das vorderste Element und gibt dies zurück. Wenn die Warteschlange leer ist, wird null zurückgegeben.
-     * @return
+     * @return ret oder null
      */
-    public MyListElement remove(){
-        if(this.length() > 0){
+    public MyListElement remove() {
+        if (this.length() > 0) {
             MyListElement ret = new MyListElement(this.getfirstElement().getMyElement());
             this.delete(this.getfirstElement());    
             return ret;            
-        }else{
+        } else {
             return null;
         }        
     } 
                     
     /**
      * Gibt das vorderste Element zurück. Wenn die Warteschlange leer ist, wird null zurückgegeben.
-     * @return
+     * @return getfirstElement oder null
      */
-    public MyListElement element(){
-        if(this.length() > 0){
+    public MyListElement element() {
+        if (this.length() > 0) {
             return this.getfirstElement();            
-        }else{
+        } else {
             return null;
         }    
     }            
