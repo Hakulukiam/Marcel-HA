@@ -256,9 +256,6 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         if(!this.isEmpty()){
             int currentCompare = this.getParentKey().compareTo((K) key);           
             if(currentCompare == 0){     
-                if(key.equals(148)){
-                    System.out.println("135 ist da!");
-                }
                 T ret = this.parentValue;
                 if(this.leftchild != null || this.rightchild != null){ //Ich habe ein rechts oder ein Linkes Kind
                     if(this.root != null){ // Ich habe einen Vater
@@ -273,22 +270,23 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             }else{ //Ich bin ein Linkes Kind                            
                                 this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
                             }                            
-                        }
-                        if(this.leftchild != null){ // Ich habe nur ein Linkes Kind  
-                            this.leftchild.root = this.root;
-                            if(childPos > 0){ //Ich bin ein Rechtes Kind
-                                this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
-                            }else{ //Ich bin ein Linkes Kind                            
-                                this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
-                            }                              
-                        }                        
-                        if(this.rightchild != null){ //Ich habe nur ein Rechtes Kind
-                            this.rightchild.root = this.root;
-                            if(childPos > 0){ //Ich bin ein Rechtes Kind
-                                this.root.rightchild = this.rightchild;  //Das Rechte Kind meiner Wurzel auf mein rechtes kind setzen               
-                            }else{ //Ich bin ein Linkes Kind                            
-                                this.root.leftchild = this.rightchild;   //Das Linke Kind meiner Wurzel auf mein rechtes kind setzen
-                            }                 
+                        }else{
+                            if(this.leftchild != null){ // Ich habe nur ein Linkes Kind  
+                                this.leftchild.root = this.root;
+                                if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                    this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
+                                }else{ //Ich bin ein Linkes Kind                            
+                                    this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
+                                }                              
+                            }                        
+                            if(this.rightchild != null){ //Ich habe nur ein Rechtes Kind
+                                this.rightchild.root = this.root;
+                                if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                    this.root.rightchild = this.rightchild;  //Das Rechte Kind meiner Wurzel auf mein rechtes kind setzen               
+                                }else{ //Ich bin ein Linkes Kind                            
+                                    this.root.leftchild = this.rightchild;   //Das Linke Kind meiner Wurzel auf mein rechtes kind setzen
+                                }                 
+                            }
                         }
                         return ret;
                     }else{ //Ich bin die Oberste Wurzel                          
