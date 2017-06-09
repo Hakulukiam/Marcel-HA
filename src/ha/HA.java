@@ -65,13 +65,12 @@ public class HA {
         }
         System.out.println("\n"+m+" Values Found.");
         System.out.println("\n-----------------------------------------------------------------------------");
-        System.out.println("Delete Elements from Tree [remove()]:");   
-        for (Integer key : ints) {
-            System.out.println("Deleted Key "+key+": "+TestTree.remove(key));
+        System.out.println("Iterate and Delete Elements from Tree [iterator() + remove()]:");
+        for (Object key : TestTree) {
+            System.out.println("Deleted Key "+key+": "+TestTree.remove((Comparable) key));
         }        
         System.out.println("\nOld Size: "+size);
         System.out.println("New Size: "+TestTree.size());
-        
         
         /*
         String datenstruktur;
