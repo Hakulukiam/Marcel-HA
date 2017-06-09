@@ -35,23 +35,7 @@ public class HA {
         System.out.println(size);
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("System Out [toString()]:");
-        System.out.println(TestTree);             
-        
-        System.out.println("\n-----------------------------------------------------------------------------");
-        System.out.println("Delete Elements from Tree [remove()]:");   
-        for (Integer key : ints) {
-            System.out.println("Deleted Key "+key+": "+TestTree.remove(key));
-        }        
-        /*
-        System.out.println("Deleting: "+530+ " Deleted: "+TestTree.remove(530));
-        System.out.println("Search Key: "+530+" -> Found: "+TestTree.get(530)); 
-        System.out.println("Deleting: "+183+" Deleted: "+TestTree.remove(183));
-        System.out.println("Search Key: "+183+" -> Found: "+TestTree.get(183)); 
-        System.out.println("Deleting: "+210+" Deleted: "+TestTree.remove(210));
-        System.out.println("Search Key: "+210+" -> Found: "+TestTree.get(210));*/
-        System.out.println("\nOld Size: "+size);
-        System.out.println("New Size: "+TestTree.size());
-
+        System.out.println(TestTree);
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Keys [get()]:");
         int o = 0;
@@ -65,8 +49,7 @@ public class HA {
                 System.out.println("Found: "+found);
             }            
         }
-        System.out.println("\n"+o+" Keys Found.");
-        
+        System.out.println("\n"+o+" Keys Found.");        
         System.out.println("\n-----------------------------------------------------------------------------");
         System.out.println("Search with Values [containsValue()]:");
         int m = 0;
@@ -81,6 +64,13 @@ public class HA {
             }    
         }
         System.out.println("\n"+m+" Values Found.");
+        System.out.println("\n-----------------------------------------------------------------------------");
+        System.out.println("Delete Elements from Tree [remove()]:");   
+        for (Integer key : ints) {
+            System.out.println("Deleted Key "+key+": "+TestTree.remove(key));
+        }        
+        System.out.println("\nOld Size: "+size);
+        System.out.println("New Size: "+TestTree.size());
         
         
         /*
