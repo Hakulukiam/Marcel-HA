@@ -301,35 +301,36 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                             this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen
                             this.parentKey = (K) this.leftchild.parentKey;
                             this.parentValue = (T) this.leftchild.parentValue;   
-                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
-                                this.leftchild = this.leftchild.leftchild;
-                                this.leftchild.root = this;
-                            } 
                             if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
-                                this.rightchild = this.leftchild.rightchild;
+                                this.rightchild = this.leftchild.rightchild; 
                                 this.rightchild.root = this;
+                            }  
+                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                                this.leftchild = this.leftchild.leftchild;        
+                                this.leftchild.root = this;
                             }
                         }else if(this.leftchild != null){ //Ich habe nur ein Linkes Kind
                             this.parentKey = (K) this.leftchild.parentKey;
                             this.parentValue = (T) this.leftchild.parentValue; 
-                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
-                                this.leftchild = this.leftchild.leftchild;                                
-                            }    
                             if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
                                 this.rightchild = this.leftchild.rightchild; 
-                            }   
-                            this.leftchild.root = this;
+                                this.rightchild.root = this;
+                            }  
+                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                                this.leftchild = this.leftchild.leftchild;        
+                                this.leftchild.root = this;
+                            }                                                         
                         }else{ //Ich habe nur ein Rechtes Kind
                             this.parentKey = (K) this.rightchild.parentKey;
                             this.parentValue = (T) this.rightchild.parentValue;
-                            if(this.rightchild.rightchild != null){//Linke Kinder meines Rechten Kindes Übernehmen
-                                this.rightchild = this.rightchild.rightchild;
-                                this.rightchild.root = this;
-                            }    
                             if(this.rightchild.leftchild != null){//Rechte Kinder meines Rechten Kindes Übernehmen
                                 this.leftchild = this.rightchild.leftchild;    
                                 this.leftchild.root = this;
-                            }                               
+                            }    
+                            if(this.rightchild.rightchild != null){//Linke Kinder meines Rechten Kindes Übernehmen
+                                this.rightchild = this.rightchild.rightchild;
+                                this.rightchild.root = this;
+                            }                                                          
                         }    
                         return ret;
                     }                                            
