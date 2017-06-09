@@ -45,53 +45,53 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         this.root = root;
     }
     
-    public de.tu_bs.ips.MyList getBranches(){
+   /* public de.tu_bs.ips.MyList getBranches(){
         return this.Branches;
-    }
+    }*/
     
-    public MyTree getmasterRoot() {
+   /* public MyTree getmasterRoot() {
         return this.masterRoot;
-    }
+    }*/
 
     public void setmasterRoot(MyTree root) {
         this.masterRoot = root;
     }
     
-    public MyTree getRoot() {
+   /* public MyTree getRoot() {
         return this.root;
-    }
+    }*/
 
     public void setRoot(MyTree root) {
         this.root = root;
     }
     
-    public K getParentKey() {
+    /*public K getParentKey() {
         return this.parentKey;
-    }
+    }*/
 
     public void setParentKey(K parentKey) {
         this.parentKey = parentKey;
     }
 
-    public T getParentValue() {
+    /*public T getParentValue() {
         return this.parentValue;
-    }
+    }*/
 
     public void setParentValue(T parentValue) {
         this.parentValue = parentValue;
     }
     
-    public MyTree getLeftchild() {
+    /*public MyTree getLeftchild() {
         return this.leftchild;
-    }
+    }*/
     
     public void setLeftchild(MyTree leftchild) {
         this.leftchild = leftchild;
     }
 
-    public MyTree getRightchild() {
+    /*public MyTree getRightchild() {
         return this.rightchild;
-    }
+    }*/
 
     public void setRightchild(MyTree rightchild) {
         this.rightchild = rightchild;
@@ -99,13 +99,13 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     public MyTree getElement(Comparable key) {
         if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);
+            int currentCompare = this.parentKey.compareTo((K) key);
             if(currentCompare == 0){
                 return this;
             }else if(currentCompare > 0){
-                return (this.getLeftchild() != null ? this.getLeftchild().getElement((K) key) : null);
+                return (this.leftchild != null ? this.leftchild.getElement((K) key) : null);
             }else{
-                return (this.getRightchild() != null ? this.getRightchild().getElement((K) key) : null);
+                return (this.rightchild != null ? this.rightchild.getElement((K) key) : null);
             }
         }else{
             return null;
@@ -114,37 +114,37 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     
     public MyTree getBiggestChild(){
         if(!this.isEmpty()){            
-            return (this.getRightchild() != null ? this.getRightchild().getBiggestChild() : this);
+            return (this.rightchild != null ? this.rightchild.getBiggestChild() : this);
         }else{
             return null;
         }
     }
     
-    public MyTree getSmallestChild(){
-        if(!this.isEmpty()){            
-            return (this.getLeftchild() != null ? this.getLeftchild().getSmallestChild() : this);
-        }else{
+    public MyTree getSmallestChild() {
+        if (!this.isEmpty()){            
+            return (this.leftchild != null ? this.leftchild.getSmallestChild() : this);
+        } else {
             return null;
         }
     }
     
-    public String printSortedKeys(MyTree currentElement, MyTree lastElement, String SortedKeys){
-        if(!this.isEmpty()){                                               
-                if(this.getBiggestChild().compareTo(currentElement) == 0){ //Letztes Element
-                    return SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+    public String printSortedKeys(MyTree currentElement, MyTree lastElement, String SortedKeys) {
+        if (!this.isEmpty()) {                                               
+                if (this.getBiggestChild().compareTo(currentElement) == 0) { //Letztes Element
+                    return SortedKeys + currentElement.parentKey + " -> " + currentElement.parentValue + "\n";
                 }    
                     
-                if(currentElement.compareTo(lastElement) >= 0){ // Element ist das nächste
-                    SortedKeys = SortedKeys + currentElement.getParentKey()+" -> "+currentElement.getParentValue()+"\n";
+                if (currentElement.compareTo(lastElement) >= 0) { // Element ist das nächste
+                    SortedKeys = SortedKeys + currentElement.parentKey + " -> " + currentElement.parentValue + "\n";
                 }                    
                     
-                if(currentElement.getRightchild() != null && currentElement.getRightchild().compareTo(lastElement) > 0){ //2 - Wenn rechtes Kind 
-                    return this.printSortedKeys(currentElement.getRightchild().getSmallestChild(), currentElement, SortedKeys); //JA -> getSmallest am rechten Kind ist nächstes element                     
-                }else{
-                    return this.printSortedKeys(currentElement.getRoot(),currentElement,SortedKeys); //Nein -> geh die Wurzel Rauf
+                if (currentElement.rightchild != null && currentElement.rightchild.compareTo(lastElement) > 0) { //2 - Wenn rechtes Kind 
+                    return this.printSortedKeys(currentElement.rightchild.getSmallestChild(), currentElement, SortedKeys); //JA -> getSmallest am rechten Kind ist nächstes element                     
+                } else {
+                    return this.printSortedKeys(currentElement.root,currentElement,SortedKeys); //Nein -> geh die Wurzel Rauf
                 }      
-        }else{
-            return "Tree is Empty";
+            } else {
+                return "Tree is Empty";
         }
     }
                 
@@ -155,8 +155,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public int size() {
-        if(!this.isEmpty()){
-            return 1 + (this.getLeftchild() != null ? this.getLeftchild().size() : 0) + (this.getRightchild() != null ? this.getRightchild().size() : 0);
+        if (!this.isEmpty()) {
+            return 1 + (this.leftchild != null ? this.leftchild.size() : 0) + (this.rightchild != null ? this.rightchild.size() : 0);
         }else{
             return 0;
         }
@@ -164,87 +164,87 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Object get(Comparable key) {
-        if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);
-            if(currentCompare == 0){
-                return this.getParentValue();
-            }else if(currentCompare > 0){
-                return (this.getLeftchild() != null ? this.getLeftchild().get((K) key) : null);
-            }else{
-                return (this.getRightchild() != null ? this.getRightchild().get((K) key) : null);
+        if (!this.isEmpty()) {
+            int currentCompare = this.parentKey.compareTo((K) key);
+            if (currentCompare == 0) {
+                return this.parentValue;
+            } else if(currentCompare > 0) {
+                return (this.leftchild != null ? this.leftchild.get((K) key) : null);
+            } else {
+                return (this.rightchild != null ? this.rightchild.get((K) key) : null);
             }
-        }else{
+        } else {
             return null;
         }
     }
     
     @Override
     public boolean containsKey(Comparable key) {
-        if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);
-            if(currentCompare == 0){
+        if (!this.isEmpty()) {
+            int currentCompare = this.parentKey.compareTo((K) key);
+            if (currentCompare == 0) {
                 return true;
-            }else if(currentCompare > 0){
-                return (this.getLeftchild() != null ? this.getLeftchild().containsKey((K) key) : false);
-            }else{
-                return (this.getRightchild() != null ? this.getRightchild().containsKey((K) key) : false);
+            } else if(currentCompare > 0) {
+                return (this.leftchild != null ? this.leftchild.containsKey((K) key) : false);
+            } else {
+                return (this.rightchild != null ? this.rightchild.containsKey((K) key) : false);
             }
-        }else{
+        } else {
             return false;
         }
     }
 
     @Override
     public boolean containsValue(Object value) {
-        if(!this.isEmpty()){
-            if(this.getParentValue().equals(value)){
+        if (!this.isEmpty()) {
+            if (this.parentValue.equals(value)) {
                 return true;
-            }else{
-                Boolean existsInLeft = (this.getLeftchild() != null ? this.getLeftchild().containsValue(value) : false);
-                Boolean existsInRight = (this.getRightchild() != null ? this.getRightchild().containsValue(value) : false);
+            } else {
+                Boolean existsInLeft = (this.leftchild != null ? this.leftchild.containsValue(value) : false);
+                Boolean existsInRight = (this.rightchild != null ? this.rightchild.containsValue(value) : false);
                 return (existsInLeft != false || existsInRight != false);
             }
-        }else{
+        } else {
             return false;
-        }
+            }
     }
 
     @Override
     public Object put(Comparable key, Object value) {
-        if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);
-            if(currentCompare == 0){
+        if (!this.isEmpty()) {
+            int currentCompare = this.parentKey.compareTo((K) key);
+            if (currentCompare == 0) {
                 return null;
-            }else if(currentCompare > 0){
-                if(this.getLeftchild() != null){
-                    return this.getLeftchild().put(key, value);
-                }else{
+            } else if (currentCompare > 0) {
+                if (this.leftchild != null) {
+                    return this.leftchild.put(key, value);
+                } else {
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
-                    InsertTree.setmasterRoot(this.getmasterRoot());
-                    if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
-                        this.getmasterRoot().Branches.append(key);
-                    }else{
-                        this.getmasterRoot().Branches.getNext().insert(key);
+                    InsertTree.setmasterRoot(this.masterRoot);
+                    if (this.masterRoot.parentKey.compareTo(key) < 0) {
+                        this.masterRoot.Branches.append(key);
+                    } else {
+                        this.masterRoot.Branches.getNext().insert(key);
                     }    
                     this.setLeftchild(InsertTree);
                     return value;
                 }
-            }else{
-                if(this.getRightchild() != null){
-                    return this.getRightchild().put(key, value);
-                }else{
+            } else {
+                if (this.rightchild != null) {
+                    return this.rightchild.put(key, value);
+                } else {
                     MyTree InsertTree = new MyTree((K) key,(T) value, this);
-                    InsertTree.setmasterRoot(this.getmasterRoot());
-                    if(this.getmasterRoot().getParentKey().compareTo(key) < 0){
-                        this.getmasterRoot().Branches.append(key);
-                    }else{
-                        this.getmasterRoot().Branches.getNext().insert(key);
+                    InsertTree.setmasterRoot(this.masterRoot);
+                    if (this.masterRoot.parentKey.compareTo(key) < 0) {
+                        this.masterRoot.Branches.append(key);
+                    } else {
+                        this.masterRoot.Branches.getNext().insert(key);
                     }                    
                     this.setRightchild(InsertTree);
                     return value;
                 }
             }
-        }else{
+        } else {
             this.setParentKey((K) key);
             this.setParentValue((T) value);
             return value;
@@ -253,143 +253,143 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
 
     @Override
     public Object remove(Comparable key) {
-        if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);           
-            if(currentCompare == 0){     
+        if (!this.isEmpty()) {
+            int currentCompare = this.parentKey.compareTo((K) key);           
+            if (currentCompare == 0) {     
                 T ret = this.parentValue;
-                if(this.leftchild != null || this.rightchild != null){ //Ich habe ein rechts oder ein Linkes Kind
-                    if(this.root != null){ // Ich habe einen Vater
+                if (this.leftchild != null || this.rightchild != null) { //Ich habe ein rechts oder ein Linkes Kind
+                    if (this.root != null) { // Ich habe einen Vater
                         int childPos = (this.root.leftchild != null ? this.compareTo((K) this.root.leftchild) : 1); //Ermitteln ob wir rechtes oder linkes Kind sind 0 - Links | 1 - Rechts
-                        if(this.leftchild != null && this.rightchild != null){ //Ich habe zwei Kinder
+                        if (this.leftchild != null && this.rightchild != null) { //Ich habe zwei Kinder
                             MyTree Biggest = this.leftchild.getBiggestChild();
                             this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen
                             this.leftchild.root = this.root; //Wirzel des Linken Kindes auf meine Wurzel Setzen
                             Biggest.rightchild = this.rightchild;
-                            if(childPos > 0){ //Ich bin ein Rechtes Kind
+                            if (childPos > 0) { //Ich bin ein Rechtes Kind
                                 this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
-                            }else{ //Ich bin ein Linkes Kind                            
+                            } else { //Ich bin ein Linkes Kind                            
                                 this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
                             }                            
-                        }else{
-                            if(this.leftchild != null){ // Ich habe nur ein Linkes Kind  
+                        } else {
+                            if(this.leftchild != null) { // Ich habe nur ein Linkes Kind  
                                 this.leftchild.root = this.root;
-                                if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                if (childPos > 0) { //Ich bin ein Rechtes Kind
                                     this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
-                                }else{ //Ich bin ein Linkes Kind                            
+                                } else { //Ich bin ein Linkes Kind                            
                                     this.root.leftchild = this.leftchild;   //Das Linke Kind meiner Wurzel auf mein linkes kind setzen
                                 }                              
                             }                        
-                            if(this.rightchild != null){ //Ich habe nur ein Rechtes Kind
+                            if(this.rightchild != null) { //Ich habe nur ein Rechtes Kind
                                 this.rightchild.root = this.root;
-                                if(childPos > 0){ //Ich bin ein Rechtes Kind
+                                if (childPos > 0) { //Ich bin ein Rechtes Kind
                                     this.root.rightchild = this.rightchild;  //Das Rechte Kind meiner Wurzel auf mein rechtes kind setzen               
-                                }else{ //Ich bin ein Linkes Kind                            
+                                } else { //Ich bin ein Linkes Kind                            
                                     this.root.leftchild = this.rightchild;   //Das Linke Kind meiner Wurzel auf mein rechtes kind setzen
                                 }                 
                             }
                         }
                         return ret;
-                    }else{ //Ich bin die Oberste Wurzel                          
-                        if(this.leftchild != null && this.rightchild != null){ //Ich habe zwei Kinder                            
+                    } else { //Ich bin die Oberste Wurzel                          
+                        if (this.leftchild != null && this.rightchild != null) { //Ich habe zwei Kinder                            
                             MyTree Biggest = this.leftchild.getBiggestChild();
                             this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen
                             Biggest.rightchild = this.rightchild;
                             this.rightchild = null;
                             this.parentKey = (K) this.leftchild.parentKey;
                             this.parentValue = (T) this.leftchild.parentValue;   
-                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
+                            if(this.leftchild.rightchild != null) {//Rechte Kinder meines Linken Kindes Übernehmen
                                 this.rightchild = this.leftchild.rightchild; 
                                 this.rightchild.root = this;
-                            }else{
+                            } else {
                                 this.rightchild = null;
                             }  
-                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                            if (this.leftchild.leftchild != null) {//Linke Kinder meines Linken Kindes Übernehmen
                                 this.leftchild = this.leftchild.leftchild;        
                                 this.leftchild.root = this;
-                            }else{
+                            } else {
                                 this.leftchild = null;
                             }  
-                        }else if(this.leftchild != null){ //Ich habe nur ein Linkes Kind
+                        } else if(this.leftchild != null) { //Ich habe nur ein Linkes Kind
                             this.parentKey = (K) this.leftchild.parentKey;
                             this.parentValue = (T) this.leftchild.parentValue; 
-                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
+                            if (this.leftchild.rightchild != null) {//Rechte Kinder meines Linken Kindes Übernehmen
                                 this.rightchild = this.leftchild.rightchild; 
                                 this.rightchild.root = this;
-                            }else{
+                            } else {
                                 this.rightchild = null;
                             }
-                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
+                            if (this.leftchild.leftchild != null) {//Linke Kinder meines Linken Kindes Übernehmen
                                 this.leftchild = this.leftchild.leftchild;        
                                 this.leftchild.root = this;
-                            }else{
+                            } else {
                                 this.leftchild = null;
                             }                                                      
-                        }else{ //Ich habe nur ein Rechtes Kind
+                        } else { //Ich habe nur ein Rechtes Kind
                             this.parentKey = (K) this.rightchild.parentKey;
                             this.parentValue = (T) this.rightchild.parentValue;
-                            if(this.rightchild.leftchild != null){//Rechte Kinder meines Rechten Kindes Übernehmen
+                            if (this.rightchild.leftchild != null) {//Rechte Kinder meines Rechten Kindes Übernehmen
                                 this.leftchild = this.rightchild.leftchild;    
                                 this.leftchild.root = this;
-                            }else{
+                            } else {
                                 this.leftchild = null;
                             }     
-                            if(this.rightchild.rightchild != null){//Linke Kinder meines Rechten Kindes Übernehmen
+                            if (this.rightchild.rightchild != null) {//Linke Kinder meines Rechten Kindes Übernehmen
                                 this.rightchild = this.rightchild.rightchild;
                                 this.rightchild.root = this;
-                            }else{
+                            } else {
                                 this.rightchild = null;
                             }                                                          
                         }    
                         return ret;
                     }                                            
-                }else{ //Ich habe keine Kinder
-                    if(this.root != null){ // Ich habe einen Vater
+                } else { //Ich habe keine Kinder
+                    if (this.root != null) { // Ich habe einen Vater
                         int childPos = (this.root.leftchild != null ? this.compareTo((K) this.root.leftchild) : 1); //Ermitteln ob wir rechtes oder linkes Kind sind 0 - Links | 1 - Rechts
-                        if(childPos > 0){ //Ich bin ein Rechtes Kind
+                        if (childPos > 0) { //Ich bin ein Rechtes Kind
                             this.root.rightchild = null;
-                        }else{ //Ich bin ein Linkes Kind
+                        } else { //Ich bin ein Linkes Kind
                             this.root.leftchild = null;
                         }          
-                    }else{ // Ich habe keinen Vater -> Ich bin alleine im Baum
+                    } else { // Ich habe keinen Vater -> Ich bin alleine im Baum
                         this.parentKey = null;
                         this.parentValue = null;
                         this.masterRoot = null;
                     }
                     return ret;
                 }               
-            }else if(currentCompare > 0){
-                return (this.getLeftchild() != null ? this.getLeftchild().remove((K) key) : null);
-            }else{
-                return (this.getRightchild() != null ? this.getRightchild().remove((K) key) : null);
+            } else if (currentCompare > 0) {
+                return (this.leftchild != null ? this.leftchild.remove((K) key) : null);
+            } else {
+                return (this.rightchild != null ? this.rightchild.remove((K) key) : null);
             }
-        }else{
+        } else {
             return null;
         }
     }
 
     @Override
     public Object replace(Comparable key, Object value) {
-        if(!this.isEmpty()){
-            int currentCompare = this.getParentKey().compareTo((K) key);
-            if(currentCompare == 0){
-                Object ret = this.getParentValue();
+        if (!this.isEmpty()) {
+            int currentCompare = this.parentKey.compareTo((K) key);
+            if (currentCompare == 0) {
+                Object ret = this.parentValue;
                 this.setParentValue((T) value);
                 return ret;
-            }else if(currentCompare > 0){
-                return (this.getLeftchild() != null ? this.getLeftchild().replace(key,value) : null);
-            }else{
-                return (this.getRightchild() != null ? this.getRightchild().replace(key,value) : null);
+            } else if (currentCompare > 0) {
+                return (this.leftchild != null ? this.leftchild.replace(key,value) : null);
+            } else {
+                return (this.rightchild != null ? this.rightchild.replace(key,value) : null);
             }
-        }else{
+        } else {
             return null;
         }
     }
     
     @Override
-    public String toString(){
-        if(!this.isEmpty()){
+    public String toString() {
+        if (!this.isEmpty()) {
             return this.printSortedKeys(this.getSmallestChild(),this.getSmallestChild(), "");                  
-        }else{
+        } else {
             return "Tree is Empty";
         }       
     }
@@ -411,9 +411,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if(current == null){
-                   current = root.getmasterRoot(); 
-                   return (T) root.getParentKey();
+                if (current == null) {
+                   current = root.masterRoot; 
+                   return (T) root.parentKey;
                 }              
                
                 T e = (T) Branches.next();                
@@ -431,6 +431,6 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
     @Override
     public int compareTo(K t) {
         MyTree tree = (MyTree) t;
-        return this.getParentKey().compareTo((K) tree.getParentKey());
+        return this.parentKey.compareTo((K) tree.parentKey);
     }    
 }
