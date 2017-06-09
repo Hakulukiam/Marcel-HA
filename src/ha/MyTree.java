@@ -263,16 +263,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
                         if(this.leftchild != null && this.rightchild != null){ //Ich habe zwei Kinder
                             MyTree Biggest = this.leftchild.getBiggestChild();
                             this.rightchild.root = Biggest; //Wurzel des Rechten Kindes an das Großte Linke Kind Hängen
+                            this.leftchild.root = this.root; //Wirzel des Linken Kindes auf meine Wurzel Setzen
                             Biggest.rightchild = this.rightchild;
-                            this.rightchild = null;
-                            if(this.leftchild.leftchild != null){//Linke Kinder meines Linken Kindes Übernehmen
-                                this.leftchild = this.leftchild.leftchild;
-                                this.leftchild.root = this;
-                            } 
-                            if(this.leftchild.rightchild != null){//Rechte Kinder meines Linken Kindes Übernehmen
-                                this.rightchild = this.leftchild.rightchild;
-                                this.rightchild.root = this;
-                            }
                             if(childPos > 0){ //Ich bin ein Rechtes Kind
                                 this.root.rightchild = this.leftchild;  //Das Rechte Kind meiner Wurzel auf mein linkes kind setzen               
                             }else{ //Ich bin ein Linkes Kind                            
