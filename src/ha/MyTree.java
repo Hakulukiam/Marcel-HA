@@ -72,8 +72,8 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         }
     }
     /**
-     * 
-     * @return Biggestchild oder null
+     * Hier würd vom ausgewaehlten Knoten das grösste Element im Baum gesucht
+     * @return Biggestchild oder null 
      */
     public MyTree getBiggestChild() {
         if (!this.isEmpty()) {            
@@ -83,7 +83,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         }
     }
     /**
-     * 
+     * Hier würd vom ausgewaehlten Knoten das kleinste Element im Baum gesucht
      * @return  smallestchild oder null
      */
     public MyTree getSmallestChild() {
@@ -94,7 +94,7 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
         }
     }
     /**
-     * 
+     * Hier wird der Baum sortiert vom kleinsten Element zum groessten Element
      * @param currentElement wird uebergeben
      * @param lastElement wird uebergeben
      * @param sortedKeys wird uebergeben
@@ -120,12 +120,16 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return "Tree is Empty";
         }
     }
-                
+    /**
+     *  Hier wird ueberprueft ob der Baum leer ist 
+     */            
     @Override
     public boolean isEmpty() {
         return this.parentKey == null;
     }
-
+    /**
+     * Hier wird die Anzahl der Knoten des Baumes ermittelt
+     */
     @Override
     public int size() {
         if (!this.isEmpty()) {
@@ -134,7 +138,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return 0;
         }
     }
-
+    /**
+     * Hier wird nachgeschaut welchen Wert der jeweilige Key besitzt 
+     */
     @Override
     public Object get(Comparable key) {
         if (!this.isEmpty()) {
@@ -150,7 +156,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return null;
         }
     }
-    
+    /**
+     * Hier wird ueberprueft ob es der jeweilige Key existiert
+     */
     @Override
     public boolean containsKey(Comparable key) {
         if (!this.isEmpty()) {
@@ -166,7 +174,9 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return false;
         }
     }
-
+    /**
+     * Hier wird ueberprueft ob der jeweilige Wert existiert
+     */
     @Override
     public boolean containsValue(Object value) {
         if (!this.isEmpty()) {
@@ -181,7 +191,10 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return false;
         }
     }
-
+    /**
+     * Hier wird der Key mit seinem Wert im Baum einsortiert
+     * Dabei wird geprueft ob es diesen Key nicht schon bereits gibt.
+     */
     @Override
     public Object put(Comparable key, Object value) {
         if (!this.isEmpty()) {
@@ -223,7 +236,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return value;
         }
     }
-
+    /**
+     * Hier wird der jeweilige Key im Baum geloescht.
+     * Dabei wird geprueft ob der Knoten Kinder besitzt und diese
+     * werden dann im Baum einsortiert
+     */
     @Override
     public Object remove(Comparable key) {
         if (!this.isEmpty()) {
@@ -341,7 +358,10 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return null;
         }
     }
-
+    /**
+     * Hier wird ein Wert im Key von einem neuen Wert ueberschrieben
+     * sofern dieser Key existiert
+     */
     @Override
     public Object replace(Comparable key, Object value) {
         if (!this.isEmpty()) {
@@ -359,7 +379,11 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return null;
         }
     }
-    
+    /**
+     * Hier werden die Keys und deren Werte, im Baum vom
+     * kleinsten bis zum groessten Key zurückgegeben.
+     * dabei wird die printSortedKeys Methode verwendet
+     */
     @Override
     public String toString() {
         if (!this.isEmpty()) {
@@ -368,7 +392,10 @@ public class MyTree<K extends Comparable<K>, T> implements de.tu_bs.ips.Tree, Co
             return "Tree is Empty";
         }       
     }
-
+    /**
+     * Hier wird der Baum sortiert von der Wurzel aus in der Reihenfolge
+     * Wurzel --> linkes Kind --> rechtes Kind
+     */
     @Override
     public Iterator iterator() {
         return new Iterator<T>() {
